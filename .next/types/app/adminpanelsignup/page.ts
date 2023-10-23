@@ -1,4 +1,4 @@
-// File: /home/shivam/Projects/WebPlenty/app/adminpanelsignup/page.tsx
+// File: /home/shivam/WebPlenty/app/adminpanelsignup/page.tsx
 import * as entry from '../../../../app/adminpanelsignup/page.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
