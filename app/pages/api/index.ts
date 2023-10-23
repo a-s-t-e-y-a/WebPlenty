@@ -2,8 +2,8 @@ import axios from "axios";
 
 
 // export const baseURL = "https://api.ketakeesingh362bansdih.in/api"; 
-export const baseURL = "https://6707-2409-40d2-1025-8dac-5109-ee6f-7111-e43a.ngrok-free.app/api"
-
+export const baseURL = "https://4e77-2409-40d2-1025-8dac-5109-ee6f-7111-e43a.ngrok-free.app/"
+// export const baseURL = 'http://localhost:5555/api'
 export const api = axios.create({
   baseURL,
   headers: {
