@@ -1,7 +1,7 @@
 import React from "react";
 import {
   BarChart,
-  
+  Shield,
   MessageSquare,
   User,
   MapPin,
@@ -26,6 +26,13 @@ export function Sidebar() {
               </label>
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
+                href="../adminpanel"
+              >
+                <Shield className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Admin Panel</span>
+              </Link>
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
                 href="../form"
               >
                 <BarChart className="h-5 w-5" aria-hidden="true" />
@@ -36,7 +43,7 @@ export function Sidebar() {
                 href="../karykarta"
               >
                 <User className="h-5 w-5" aria-hidden="true" />
-                <span className="mx-2 text-sm font-medium">Karyakarta</span>
+                <span className="mx-2 text-sm font-medium">कार्यकर्ता</span>
               </Link>
              
               {/* <Link

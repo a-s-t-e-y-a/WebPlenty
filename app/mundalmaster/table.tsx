@@ -3,8 +3,9 @@ import { Pencil, Trash2 } from "lucide-react";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import { api } from "../pages/api";
+import { v4 as uuidv4 } from "uuid";
 
-export function Table({ data }: any) {
+export function Table({ data, url }: any) {
   function del(id: number) {
   if(confirm('यदि आप मंडल को हटाते हैं तो मंडल से संबंधित सभी डेटा हटा दिए जाते हैं')){
       const del = api
@@ -18,6 +19,8 @@ export function Table({ data }: any) {
   color: "#fff",
   },
   });
+  
+  
   }) // Close the then block here
   .catch((error) => {
   // Handle errors here if needed
@@ -26,16 +29,60 @@ export function Table({ data }: any) {
   }
    
   }
+  function download(type: string) {
+    console.log(type);
+    const apiUrl =
+      url === "/mundal"
+        ? `${url}?download=true&&type=${type}`
+        : `${url}&&download=true&&type=${type}`;
+
+    api
+      .get(apiUrl, { responseType: "blob" })
+      .then((response) => {
+        const disposition = response.headers["content-disposition"];
+        let filename = `bjp__karykarta__${uuidv4()}`;
+
+        if (disposition && disposition.indexOf("attachment") !== -1) {
+          const matches = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/.exec(
+            disposition
+          );
+          if (matches != null && matches[1]) {
+            filename = matches[1].replace(/['"]/g, "");
+          }
+        }
+
+        const blob = new Blob([response.data], {
+          type: response.headers["content-type"],
+        });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
   return (
     <>
       <div className="flex justify-center">
-        {/* <button className="px-4 py-2 border-2 mb-5 mx-2 rounded-lg border-gray-400">
-          PDF
-        </button>
-        <button className="px-4 py-2 border-2 mb-5 mx-2 rounded-lg border-gray-400">
-          Excel
-        </button> */}
+        
+        <button
+            onClick={() => download("pdf")}
+            className="px-4 py-2 border-2 mb-5 mx-2 rounded-lg border-gray-400 text-sm"
+          >
+            PDF
+          </button>
+          <button
+            onClick={() => download("Excel")}
+            className="px-4 py-2 border-2 mb-5 mx-2 rounded-lg border-gray-400 text-sm"
+          >
+            Excel
+          </button>
         <button className="px-4 py-2 border-2 mb-5 mx-2 rounded-lg border-gray-400">
           <Link
             className="w-full h-full text-black transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
@@ -98,7 +145,7 @@ export function Table({ data }: any) {
                     href="../mundalmasterformedit"
                     className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                   >
-                    Edit
+                    Update
                   </Link>
                 </td>
                 <td className="px-6 py-4">

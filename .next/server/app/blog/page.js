@@ -244,7 +244,7 @@ module.exports = require("url");
 
 /***/ }),
 
-/***/ 8534:
+/***/ 1178:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -281,7 +281,7 @@ const tree = {
         'blog',
         {
         children: ['__PAGE__', {}, {
-          page: [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 2393)), "/home/krishna/projects/WebPlenty/app/blog/page.tsx"],
+          page: [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 2393)), "/home/shivam/Projects/WebPlenty/app/blog/page.tsx"],
           
         }]
       },
@@ -298,7 +298,7 @@ const tree = {
       ]
       },
         {
-        'layout': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 3786)), "/home/krishna/projects/WebPlenty/app/layout.tsx"],
+        'layout': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 3786)), "/home/shivam/Projects/WebPlenty/app/layout.tsx"],
 'not-found': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 5151, 23)), "next/dist/client/components/not-found-error"],
         metadata: {
     icon: [(async (props) => (await Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 226))).default(props))],
@@ -310,7 +310,7 @@ const tree = {
       }
       ]
       }.children;
-const pages = ["/home/krishna/projects/WebPlenty/app/blog/page.tsx"];
+const pages = ["/home/shivam/Projects/WebPlenty/app/blog/page.tsx"];
 
 // @ts-expect-error - replaced by webpack/turbopack loader
 
@@ -342,7 +342,7 @@ const routeModule = new AppPageRouteModule({
 
 /***/ }),
 
-/***/ 1522:
+/***/ 6768:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 167));
@@ -387,7 +387,7 @@ function page() {
             /*#__PURE__*/ jsx_runtime_.jsx("div", {
                 className: "relative w-full bg-white mt-10",
                 children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                    className: "mx-auto max-w-7xl lg:px-8",
+                    className: "mx-auto sm:w-full md:max-w-[90%] lg:max-w-[80%]",
                     children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
                         className: "rounded-lg bg-gray-200 p-4",
                         children: /*#__PURE__*/ jsx_runtime_.jsx((image_default()), {
@@ -399,16 +399,16 @@ function page() {
                 })
             }),
             /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                className: "w-full my-[50px]",
+                className: "mx-auto sm:w-full md:max-w-[90%] lg:max-w-[80%]",
                 children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                    className: " mx-auto sm:w-[100vw] lg:w-[90vw]",
+                    className: " mx-auto p-4",
                     children: [
                         /*#__PURE__*/ jsx_runtime_.jsx("h1", {
-                            className: "",
-                            children: "lorem12"
+                            className: "text-4xl font-bold",
+                            children: "Headline"
                         }),
                         /*#__PURE__*/ jsx_runtime_.jsx("p", {
-                            className: "",
+                            className: "py-4",
                             children: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error consequatur obcaecati praesentium laboriosam quam inventore ipsa eius ducimus repellendus laborum sequi enim expedita, maiores, beatae, sapiente architecto sint saepe minus. Error facilis nam harum accusamus magni magnam, cumque quisquam sint doloremque excepturi molestiae consectetur eaque, perspiciatis laboriosam ab sed, quos sunt vitae optio eos dolorum. Labore voluptatem repudiandae accusamus non facere voluptatibus hic, assumenda dolor tempore? Aut, in velit! Repellat amet ipsam, sit perferendis recusandae omnis praesentium, assumenda ipsa magnam deserunt harum sequi vel exercitationem modi consequatur architecto! Laudantium fuga unde quas quibusdam voluptas nobis vitae recusandae id dolores autem odio deserunt minima ut modi, repellat a at vero. Sit cum, nihil aspernatur fugiat maiores quia nam corporis quod expedita dolore inventore tempore neque natus voluptatem necessitatibus at quo non esse modi. Reiciendis excepturi odit ex facere ab error, labore eius natus eaque maxime exercitationem, voluptatem illo neque iusto sapiente. Distinctio eos fuga debitis accusantium soluta adipisci ab sit fugit obcaecati, eveniet minus praesentium? Praesentium culpa inventore consequuntur illo quibusdam corporis, qui, rem labore omnis accusamus quae deleniti fugiat, ullam molestias officia. Maiores accusantium quod labore nesciunt totam earum voluptatem fuga nemo neque. Consequuntur rem cupiditate officiis incidunt labore. Quibusdam! "
                         })
                     ]
@@ -441,7 +441,7 @@ __webpack_require__.r(__webpack_exports__);
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [730,340,426,868,435], () => (__webpack_exec__(8534)));
+var __webpack_exports__ = __webpack_require__.X(0, [730,340,426,753,435], () => (__webpack_exec__(1178)));
 module.exports = __webpack_exports__;
 
 })();

@@ -244,7 +244,7 @@ module.exports = require("url");
 
 /***/ }),
 
-/***/ 7946:
+/***/ 4114:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -281,7 +281,7 @@ const tree = {
         'message',
         {
         children: ['__PAGE__', {}, {
-          page: [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 9013)), "/home/krishna/projects/WebPlenty/app/message/page.tsx"],
+          page: [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 9013)), "/home/shivam/Projects/WebPlenty/app/message/page.tsx"],
           
         }]
       },
@@ -298,7 +298,7 @@ const tree = {
       ]
       },
         {
-        'layout': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 3786)), "/home/krishna/projects/WebPlenty/app/layout.tsx"],
+        'layout': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 3786)), "/home/shivam/Projects/WebPlenty/app/layout.tsx"],
 'not-found': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 5151, 23)), "next/dist/client/components/not-found-error"],
         metadata: {
     icon: [(async (props) => (await Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 226))).default(props))],
@@ -310,7 +310,7 @@ const tree = {
       }
       ]
       }.children;
-const pages = ["/home/krishna/projects/WebPlenty/app/message/page.tsx"];
+const pages = ["/home/shivam/Projects/WebPlenty/app/message/page.tsx"];
 
 // @ts-expect-error - replaced by webpack/turbopack loader
 
@@ -342,7 +342,7 @@ const routeModule = new AppPageRouteModule({
 
 /***/ }),
 
-/***/ 2825:
+/***/ 541:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 9133));
@@ -368,7 +368,7 @@ var jsx_runtime_ = __webpack_require__(6786);
 var module_proxy = __webpack_require__(4908);
 ;// CONCATENATED MODULE: ./app/components/navbarlogout.tsx
 
-const proxy = (0,module_proxy.createProxy)(String.raw`/home/krishna/projects/WebPlenty/app/components/navbarlogout.tsx`)
+const proxy = (0,module_proxy.createProxy)(String.raw`/home/shivam/Projects/WebPlenty/app/components/navbarlogout.tsx`)
 
 // Accessing the __esModule property and exporting $$typeof are required here.
 // The __esModule getter forces the proxy target to create the default export
@@ -383,6 +383,8 @@ const e0 = proxy["NavbarLogout"];
 var react_shared_subset = __webpack_require__(5420);
 // EXTERNAL MODULE: ./node_modules/.pnpm/lucide-react@0.274.0_react@18.2.0/node_modules/lucide-react/dist/esm/icons/bar-chart.js
 var bar_chart = __webpack_require__(8156);
+// EXTERNAL MODULE: ./node_modules/.pnpm/lucide-react@0.274.0_react@18.2.0/node_modules/lucide-react/dist/esm/icons/shield.js
+var shield = __webpack_require__(9492);
 // EXTERNAL MODULE: ./node_modules/.pnpm/lucide-react@0.274.0_react@18.2.0/node_modules/lucide-react/dist/esm/icons/message-square.js
 var message_square = __webpack_require__(9413);
 // EXTERNAL MODULE: ./node_modules/.pnpm/lucide-react@0.274.0_react@18.2.0/node_modules/lucide-react/dist/esm/icons/user.js
@@ -393,6 +395,7 @@ var map_pin = __webpack_require__(115);
 var next_link = __webpack_require__(2649);
 var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 ;// CONCATENATED MODULE: ./app/components/sidebar.tsx
+
 
 
 
@@ -418,6 +421,20 @@ function Sidebar() {
                                 }),
                                 /*#__PURE__*/ (0,jsx_runtime_.jsxs)((link_default()), {
                                     className: "flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700",
+                                    href: "../adminpanel",
+                                    children: [
+                                        /*#__PURE__*/ jsx_runtime_.jsx(shield/* default */.Z, {
+                                            className: "h-5 w-5",
+                                            "aria-hidden": "true"
+                                        }),
+                                        /*#__PURE__*/ jsx_runtime_.jsx("span", {
+                                            className: "mx-2 text-sm font-medium",
+                                            children: "Admin Panel"
+                                        })
+                                    ]
+                                }),
+                                /*#__PURE__*/ (0,jsx_runtime_.jsxs)((link_default()), {
+                                    className: "flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700",
                                     href: "../form",
                                     children: [
                                         /*#__PURE__*/ jsx_runtime_.jsx(bar_chart/* default */.Z, {
@@ -440,7 +457,7 @@ function Sidebar() {
                                         }),
                                         /*#__PURE__*/ jsx_runtime_.jsx("span", {
                                             className: "mx-2 text-sm font-medium",
-                                            children: "Karyakarta"
+                                            children: "कार्यकर्ता"
                                         })
                                     ]
                                 }),
@@ -542,6 +559,17 @@ function Page() {
 /* harmony default export */ const page = (Page);
 
 
+/***/ }),
+
+/***/ 2585:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Z: () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({"src":"/_next/static/media/bjplogo.274d306e.jpg","height":80,"width":80,"blurDataURL":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoKCgoKCgsMDAsPEA4QDxYUExMUFiIYGhgaGCIzICUgICUgMy03LCksNy1RQDg4QFFeT0pPXnFlZXGPiI+7u/sBCgoKCgoKCwwMCw8QDhAPFhQTExQWIhgaGBoYIjMgJSAgJSAzLTcsKSw3LVFAODhAUV5PSk9ecWVlcY+Ij7u7+//CABEIAAgACAMBIgACEQEDEQH/xAAoAAEBAAAAAAAAAAAAAAAAAAAABgEBAQAAAAAAAAAAAAAAAAAAAwT/2gAMAwEAAhADEAAAAKgRL//EAB4QAAEBCQAAAAAAAAAAAAAAABITAAMEERQVQVJy/9oACAEBAAE/AKiIVBJ9c1hzItuW/8QAHREAAQIHAAAAAAAAAAAAAAAAEQECAAMSEyIjYf/aAAgBAgEBPwBkq4dj20qMVB6sf//EAB0RAAEEAgMAAAAAAAAAAAAAAAMBAhESAAUTImH/2gAIAQMBAT8ADsCryWEF3dYs2Y8TP//Z","blurWidth":8,"blurHeight":8});
+
 /***/ })
 
 };
@@ -551,7 +579,7 @@ function Page() {
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [730,340,815,498,868,133], () => (__webpack_exec__(7946)));
+var __webpack_exports__ = __webpack_require__.X(0, [730,340,815,116,753,133], () => (__webpack_exec__(4114)));
 module.exports = __webpack_exports__;
 
 })();

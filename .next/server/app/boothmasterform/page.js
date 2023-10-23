@@ -324,7 +324,31 @@ module.exports = require("zlib");
 
 /***/ }),
 
-/***/ 1875:
+/***/ 5080:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Z: () => (/* binding */ Shield)
+/* harmony export */ });
+/* harmony import */ var _createLucideIcon_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2419);
+/**
+ * lucide-react v0.274.0 - ISC
+ */
+
+
+
+const Shield = (0,_createLucideIcon_js__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z)("Shield", [
+  ["path", { d: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10", key: "1irkt0" }]
+]);
+
+
+//# sourceMappingURL=shield.js.map
+
+
+/***/ }),
+
+/***/ 1308:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -361,7 +385,7 @@ const tree = {
         'boothmasterform',
         {
         children: ['__PAGE__', {}, {
-          page: [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 2811)), "/home/krishna/projects/WebPlenty/app/boothmasterform/page.tsx"],
+          page: [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 2811)), "/home/shivam/Projects/WebPlenty/app/boothmasterform/page.tsx"],
           
         }]
       },
@@ -378,7 +402,7 @@ const tree = {
       ]
       },
         {
-        'layout': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 3786)), "/home/krishna/projects/WebPlenty/app/layout.tsx"],
+        'layout': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 3786)), "/home/shivam/Projects/WebPlenty/app/layout.tsx"],
 'not-found': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(__webpack_require__, 5151, 23)), "next/dist/client/components/not-found-error"],
         metadata: {
     icon: [(async (props) => (await Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 226))).default(props))],
@@ -390,7 +414,7 @@ const tree = {
       }
       ]
       }.children;
-const pages = ["/home/krishna/projects/WebPlenty/app/boothmasterform/page.tsx"];
+const pages = ["/home/shivam/Projects/WebPlenty/app/boothmasterform/page.tsx"];
 
 // @ts-expect-error - replaced by webpack/turbopack loader
 
@@ -422,7 +446,7 @@ const routeModule = new AppPageRouteModule({
 
 /***/ }),
 
-/***/ 8082:
+/***/ 2133:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 5014))
@@ -475,6 +499,9 @@ function Page() {
                     color: "#fff"
                 }
             });
+            setTimeout(()=>{
+                window.location.reload();
+            }, 1000);
         }).catch(function(error) {
             console.log(error);
             react_hot_toast__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .ZP.error(error.response.data.message);
@@ -654,7 +681,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4908);
 
-const proxy = (0,next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__.createProxy)(String.raw`/home/krishna/projects/WebPlenty/app/boothmasterform/page.tsx`)
+const proxy = (0,next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__.createProxy)(String.raw`/home/shivam/Projects/WebPlenty/app/boothmasterform/page.tsx`)
 
 // Accessing the __esModule property and exporting $$typeof are required here.
 // The __esModule getter forces the proxy target to create the default export
@@ -675,7 +702,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [730,340,976,815,465,251,868,133,393,236], () => (__webpack_exec__(1875)));
+var __webpack_exports__ = __webpack_require__.X(0, [730,340,976,465,815,251,753,538,133,236], () => (__webpack_exec__(1308)));
 module.exports = __webpack_exports__;
 
 })();
