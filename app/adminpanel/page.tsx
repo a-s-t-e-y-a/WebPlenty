@@ -41,7 +41,7 @@ function Page() {
           <div className="flex justify-center">
             <h1 className="text-2xl font-extrabold mt-10">Admin Panel</h1>
           </div>
-          <Table ></Table>
+          <Table />
         </div>
       </div>
     </>
