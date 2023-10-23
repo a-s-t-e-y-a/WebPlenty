@@ -6,31 +6,29 @@ import { api } from "../pages/api";
 
 export function Table({ data }: any) {
   function del(id: number) {
-  if(confirm('यदि आप मंडल को हटाते हैं तो मंडल से संबंधित सभी डेटा हटा दिए जाते हैं')){
+    if (confirm("यदि आप मंडल को हटाते हैं तो मंडल से संबंधित सभी डेटा हटा दिए जाते हैं")) {
       const del = api
-  .delete(`mundal/${id}`)
-  .then((response) => {
-  toast(response.data.message, {
-  icon: "👏",
-  style: {
-  borderRadius: "10px",
-  background: "#333",
-  color: "#fff",
-  },
-  });
-  }) // Close the then block here
-  .catch((error) => {
-  // Handle errors here if needed
-  console.error(error);
-  });
-  }
-   
+        .delete(`mundal/${id}`)
+        .then((response) => {
+          toast(response.data.message, {
+            icon: "👏",
+            style: {
+              borderRadius: "10px",
+              background: "#333",
+              color: "#fff",
+            },
+          });
+        }) // Close the then block here
+        .catch((error) => {
+          // Handle errors here if needed
+          console.error(error);
+        });
+    }
   }
 
   return (
     <>
       <div className="flex justify-center">
-        
         <button className="px-4 py-2 border-2 mb-5 mx-2 rounded-lg border-gray-400">
           <Link
             className="w-full h-full text-black transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
@@ -54,7 +52,6 @@ export function Table({ data }: any) {
                 Password
               </th>
 
-             
               <th scope="col" className="px-6 py-3">
                 Action
               </th>
@@ -64,49 +61,46 @@ export function Table({ data }: any) {
             </tr>
           </thead>
           <tbody>
-            
-              <tr
-                // key={info.id}
-                className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
+            <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+              <th
+                scope="row"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  {/* {index + 1} */}
-                </th>
-                <td className="px-6 py-4">
-                  {/* {info.id} */}
-                  </td>
-                <td className="px-6 py-4">
-                  {/* {info.name} */}
-                  </td>
-                {/* <td className="px-6 py-4">
+                {/* {index + 1} */}
+              </th>
+              <td className="px-6 py-4">
+                {/* {info.id} */}
+              </td>
+              <td className="px-6 py-4">
+                {/* {info.name} */}
+              </td>
+              {
+                /* <td className="px-6 py-4">
                   {info.sector != null ? info.sector.length : "0"}
                 </td>
                 <td className="px-6 py-4">
                   {info.karyakarta != null ? info.karyakarta.length : "0"}
-                </td> */}
-                <td className="px-6 py-4">
-                  <Link
-                    href="../adminpaneledit"
-                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                  >
-                    Update
-                  </Link>
-                </td>
-                <td className="px-6 py-4">
-                  <button
-                    // onClick={() => del(info.id)}
-                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                  >
-                    Delete
-                  </button  >
-                </td>
-              </tr>
-            <Toaster />
+                </td> */
+              }
+              <td className="px-6 py-4">
+                <Link
+                  href="../adminpaneledit"
+                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                >
+                  Update
+                </Link>
+              </td>
+              <td className="px-6 py-4">
+                <button // onClick={() => del(info.id)}
+                className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                  Delete
+                </button>
+              </td>
+            </tr>
+           
           </tbody>
         </table>
+        <Toaster/>
       </div>
     </>
   );
