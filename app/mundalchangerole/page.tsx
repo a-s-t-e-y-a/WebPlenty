@@ -1,8 +1,11 @@
 'use client'
+'use client'
 import { Toaster } from "react-hot-toast";
 import { useForm, Controller } from "react-hook-form";
 import { NavbarLogout } from "../components/navbarlogout";
 import { Sidebar } from "../components/sidebar";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function Page() {
   const {
@@ -79,6 +82,6 @@ export default function Page() {
           </form>
         </div>
       </div>
-    </>
-  );
+        </>
+    )
 }
