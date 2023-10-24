@@ -69,9 +69,9 @@ export default function Page() {
             </tr>
           </thead>
           <tbody>
-            {data.map((info: any, index: number) => (
+            {/* {data.map((info: any, index: number) => ( */}
               <tr
-                key={info.id}
+                // key={info.id}
                 className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
               >
                 
@@ -79,10 +79,10 @@ export default function Page() {
                   scope="row"
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
-                  {index + 1}
+                  {/* {index + 1} */}
                 </th>
-                <td className="px-6 py-4">{info.name}</td>
-                <td className="px-6 py-4">{info.role}</td>
+                <td className="px-6 py-4"></td>
+                <td className="px-6 py-4"></td>
                 <td className="px-6 py-4">
                   <Link
                     href="../mundalmasterformedit"
@@ -100,7 +100,7 @@ export default function Page() {
                   </button  >
                 </td>
               </tr>
-            {/* ))}
+            {/* ))} */}
             <Toaster />
           </tbody>
         </table>
@@ -134,7 +134,7 @@ export default function Page() {
             </tr>
           </thead>
           <tbody>
-            {/* {data.map((info: any, index: number) => ( */}
+       
               <tr
                 // key={info.id}
                 className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
@@ -164,7 +164,7 @@ export default function Page() {
                   </button  >
                 </td>
               </tr>
-            {/* ))} */}
+           
             <Toaster />
           </tbody>
         </table>
