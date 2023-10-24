@@ -6,27 +6,7 @@ import { Table } from "./table";
 import { api } from "../pages/api";
 
 function Page() {
-  const [data, setData] = useState({});
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(true);
 
-//   async function fetchData() {
-//     await api
-//       .get("/mundal")
-//       .then((info) => {
-//         setData(info.data.data);
-//         setLoading(false);
-//       })
-//       .catch((error) => {
-//         setError(error);
-//       });
-//   }
-//   useEffect(() => {
-//     fetchData();
-//   }, []);
-//   console.log(data);
-//   if (error) return <div>error..... !!!!!</div>;
-//   if (loading) return <div>loading....</div>;
   return (
     <>
       <div className="w-[100vw]  z-10">

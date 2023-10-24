@@ -9,17 +9,15 @@ import modiyogi from "https://shivam-practics-bucket.s3.ap-south-1.amazonaws.com
 import toast, { Toaster } from "react-hot-toast";
 import { useForm, Controller } from "react-hook-form";
 import { api } from "../pages/api";
-export default function Page() {
+
 export default function Page() {
   const { handleSubmit, control } = useForm();
   const handleFormSubmit = async (data: any) => {
     console.log(data);
-   await api.post(
-      "/user/",
-      {
+    await api
+      .post("/user/", {
         ...data,
-      },
-    )
+      })
       .then((info) => {
         localStorage.setItem("accessToken", info.data.data);
         toast(info.data.message, {
@@ -30,6 +28,9 @@ export default function Page() {
             color: "#fff",
           },
         });
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
       })
       .catch((error) => {
         console.log(error);
