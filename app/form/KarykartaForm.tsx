@@ -183,23 +183,27 @@ const KarykartaForm: React.FC<KarykartaFormProps> = () => {
 
       <label className="block mb-2 font-bold text-gray-700">Mundal:</label>
       <select
-        {...register("mundalId", { required: true })}
-        className="w-full p-2 mb-4 border rounded-md"
-      >
-        {!isLoading
-          ? (
-            data.data.map((info: any) => (
-              <option value={info.id} key={info.id}>
-                {info.name}
-              </option>
-            ))
-          )
-          : (
-            <option value="" key="loading">
-              Loading...
-            </option>
-          )}
-      </select>
+  {...register("mundalId", { required: true })}
+  className="w-full p-2 mb-4 border rounded-md"
+>
+  {!isLoading ? (
+    data && data.data ? (
+      data.data.map((info: any) => (
+        <option value={info.id} key={info.id}>
+          {info.name}
+        </option>
+      ))
+    ) : (
+      <option value="" key="no-data">
+        No data available
+      </option>
+    )
+  ) : (
+    <option value="" key="loading">
+      Loading...
+    </option>
+  )}
+</select>
 
       <label className="block mb-2 font-bold text-gray-700">Role:</label>
       <div className="flex space-x-4">

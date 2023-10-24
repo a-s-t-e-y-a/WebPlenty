@@ -9,10 +9,12 @@ import toast, { Toaster } from "react-hot-toast";
 import { useForm, Controller } from "react-hook-form";
 import { api } from "../pages/api";
 import { useSearchParams } from "next/navigation";
+import {useRouter} from "next/navigation";
 
 export default function Page() {
   const [info, setInfo] = useState<UserData>();
   const [load, setLoad] = useState(true);
+  const router = useRouter();
   const searchParams = useSearchParams();
   useEffect(() => {
     const dataParam = searchParams.get("data");
@@ -27,8 +29,7 @@ export default function Page() {
   const handleFormSubmit = async (data: any) => {
     console.log(data);
     try {
-      const response = await api.post("/user/", data);
-      localStorage.setItem("accessToken", response.data.data);
+      const response = await api.put(`/user/${info.id}`, data);
       toast.success(response.data.message, {
         icon: "😎",
         style: {
@@ -38,7 +39,7 @@ export default function Page() {
         },
       });
       setTimeout(() => {
-        window.location.reload();
+        router.push("../adminpanel");
       }, 500);
     } catch (error: any) {
       console.log(error);
@@ -201,7 +202,7 @@ export default function Page() {
                 type="submit"
                 className="inline-flex w-full items-center justify-center rounded-md bg-orange-600 px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-orange-500 my-5"
               >
-                Create Admin
+                Update Admin
                 <ArrowRight className="ml-2" size={16} />
               </button>
               <Toaster />
@@ -218,4 +219,5 @@ interface UserData {
   phoneNumber: string;
   dob: string;
   password: string;
+  id:number
 }
