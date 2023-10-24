@@ -26,8 +26,9 @@ function Page() {
 
   const onSubmit = (data: any) => {
     return api
-      .post("/mundal", {
-        ...data,
+      .put(`mundal/name/${info.id}`, {
+        name:data.name,
+
       })
       .then(function (response) {
         toast(response.data.message, {
@@ -40,7 +41,7 @@ function Page() {
         });
         setTimeout(() => {
           window.location.reload();
-        }, 1000);
+        }, 500);
       })
       .catch(function (error) {
         toast.error(error.response.data.message);
