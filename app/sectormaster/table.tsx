@@ -65,6 +65,9 @@ export function Table({ data }: any) {
                 SECTOR PRABHARI
               </th>
               <th scope="col" className="px-6 py-3">
+                Open
+              </th>
+              <th scope="col" className="px-6 py-3">
                 Action
               </th>
               <th scope="col" className="px-6 py-3">
@@ -109,6 +112,14 @@ export function Table({ data }: any) {
                     : "None"}
                 </td>
                 <td className="px-6 py-4">
+                  <Link
+                    href="../sectormasterdetails"
+                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                  >
+                    Open
+                  </Link>
+                  </td>
+                  <td className="px-6 py-4">
                   <Link
                     href="../sectormasterformedit"
                     className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
