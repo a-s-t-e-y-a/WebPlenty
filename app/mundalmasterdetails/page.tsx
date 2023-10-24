@@ -89,7 +89,7 @@ export default function Page() {
                         href="../mundalmasterformedit"
                         className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                       >
-                        Update
+                        Change Role
                       </Link>
                     </td>
                     <td className="px-6 py-4">
