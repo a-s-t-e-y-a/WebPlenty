@@ -29,7 +29,8 @@ export function Table() {
 
   function del(id) {
     if (window.confirm("क्या आप एडमिन को हटाना चाहते हैं?")) {
-      api.delete(`user/${id}`)
+      api
+        .delete(`user/${id}`)
         .then((response) => {
           toast(response.data.message, {
             icon: "👏",
@@ -51,9 +52,7 @@ export function Table() {
     <>
       <div className="flex justify-center">
         <button className="px-4 py-2 border-2 mb-5 mx-2 rounded-lg border-gray-400">
-          <Link href="../adminpanelsignup">
-            Add New Admin
-          </Link>
+          <Link href="../adminpanelsignup">Add New Admin</Link>
         </button>
       </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -79,26 +78,35 @@ export function Table() {
           </thead>
           <tbody>
             {data.map((info, index) => (
-              <tr key={info.id} className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+              <tr
+                key={info.id}
+                className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
+              >
                 <th
                   scope="row"
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
                   {index + 1}
                 </th>
+                <td className="px-6 py-4">{info.email}</td>
+                <td className="px-6 py-4">{info.name}</td>
                 <td className="px-6 py-4">
-                  {info.email}
-                </td>
-                <td className="px-6 py-4">
-                  {info.name}
-                </td>
-                <td className="px-6 py-4">
-                  <Link href="../adminpaneledit">
+                  <Link
+                    href={{
+                      pathname: "../adminpaneledit",
+                      query: {
+                        data: JSON.stringify(info),
+                      },
+                    }}
+                  >
                     Update
                   </Link>
                 </td>
                 <td className="px-6 py-4">
-                  <button onClick={() => del(info.id)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                  <button
+                    onClick={() => del(info.id)}
+                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                  >
                     Delete
                   </button>
                 </td>
