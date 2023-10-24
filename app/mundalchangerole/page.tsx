@@ -1,10 +1,11 @@
 'use client'
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useForm, Controller } from "react-hook-form";
 import { NavbarLogout } from "../components/navbarlogout";
 import { Sidebar } from "../components/sidebar";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import api from "../pages/api";
 
 export default function Page() {
   const [info, setInfo] = useState<KarykartaData>();
@@ -21,26 +22,30 @@ export default function Page() {
 
   const { control, handleSubmit } = useForm(); // Uncomment this line to initialize handleSubmit
 
-  const onSubmit = (data) => {
-    // Your form submission logic here
-    // You can use the data object to access form field values
-
-    // Example using your API call (make sure to import `toast` and `api`):
-    // api.post("/mundal", data)
-    //   .then(function (response) {
-    //     toast(response.data.message, {
-    //       icon: "👏",
-    //       style: {
-    //         borderRadius: "10px",
-    //         background: "#333",
-    //         color: "#fff",
-    //       },
-    //     });
-    //   });
+  const onSubmit = (data:any) => {
+ 
+  api.put(`/mundal/${info.id}`, {
+      mundalId:info.mundalId,
+      role:data.role 
+    })
+      .then(function (response) {
+        console.log(response)
+        toast(response.data.message, {
+          icon: "👏",
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
+      })
+    .catch(function (error) {
+        toast.error(error.response.data.message);
+      });
 
     console.log(data);
   };
-
+if(load) return <div>Loading ....</div>
   return (
     <>
       <div className="w-[100vw] z-10">
@@ -62,7 +67,7 @@ export default function Page() {
                 <Controller
                   name="role"
                   control={control}
-                  defaultValue=""
+                  defaultValue={info.role}
                   render={({ field }) => (
                     <select
                       {...field}
