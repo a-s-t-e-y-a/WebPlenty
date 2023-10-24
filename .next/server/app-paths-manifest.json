@@ -1,7 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/adminpanel/page": "app/adminpanel/page.js",
-  "/mundalmaster/page": "app/mundalmaster/page.js",
-  "/mundalmasterform/page": "app/mundalmasterform/page.js"
-}
