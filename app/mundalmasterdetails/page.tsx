@@ -30,7 +30,28 @@ export default function Page() {
   }, [searchParams]);
   if (load) return <div>Loading ...</div>;
   if (error) return <div>Error</div>;
-
+  function onClickDelete(id: number) {
+    const del = api
+      .delete(`karykarta/${id}`)
+      .then((response) => {
+        toast(response.data.message, {
+          icon: "👏",
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      })
+      .catch(function (error) {
+        toast.error(error.response.data.message);
+        console.log(error.response.data.message);
+      });
+    console.log(del);
+  }
   return (
     <>
       <div className="w-[100vw]  z-10">
@@ -93,7 +114,7 @@ export default function Page() {
                       </Link>
                     </td>
                     <td className="px-6 py-4">
-                      <button // onClick={() => del(info.id)}
+                      <button  onClick={() => onClickDelete(info.id)}
                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                         Delete
                       </button>

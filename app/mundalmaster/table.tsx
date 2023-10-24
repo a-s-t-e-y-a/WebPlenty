@@ -154,7 +154,15 @@ export function Table({ data, url }: any) {
                 </td>
                 <td className="px-6 py-4">
                   <Link
-                    href="../mundalmasterformedit"
+                    href={{
+                      pathname: "../mundalmasterformedit",
+                      query: {
+                        data: JSON.stringify({
+                          id: info.id,
+                          name: info.name,
+                        }),
+                      },
+                    }}
                     className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                   >
                     Update
