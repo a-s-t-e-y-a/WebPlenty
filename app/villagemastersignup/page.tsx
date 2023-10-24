@@ -1,12 +1,6 @@
-"use client";
+'use client'
 import { NavbarLogout } from "../components/navbarlogout";
 import { Sidebar } from "../components/sidebar";
-<<<<<<< HEAD
-import { Controller, useForm } from "react-hook-form";
-import { api, baseURL } from "../pages/api";
-import useSWR from "swr";
-import toast, { Toaster } from "react-hot-toast";
-=======
 import { useForm, Controller } from "react-hook-form";
 import { api, baseURL } from "../pages/api";
 import useSWR from "swr";
@@ -14,7 +8,6 @@ import toast, { Toaster } from "react-hot-toast";
 import { SendToBack } from "lucide-react";
 import { useState } from "react";
 
->>>>>>> refs/remotes/origin/main
 function Page() {
   const {
     control,
@@ -22,18 +15,8 @@ function Page() {
     register,
     formState: { errors },
   } = useForm();
-    function getAuthToken() {
-    return localStorage.getItem("accessToken");
-  }
-  const fetcher = (url: string) =>
-    fetch(url, {
-      headers: {
-        authorization: `${getAuthToken()}`, // Include the token here
-      },
-    }).then((res) => res.json());
-  const { data, error, isLoading } = useSWR(`${baseURL}/sector`, fetcher);
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = (data: any) => {
     return api
       .post("/village", {
         ...data,
@@ -54,11 +37,6 @@ function Page() {
       .catch(function (error) {
         toast.error(error.response.data.message);
       });
-<<<<<<< HEAD
-  };
-   if(isLoading) return<div>Loading .... </div>
-  if(error)return <div>error</div>
-=======
   }
 
   function getAuthToken() {
@@ -73,7 +51,6 @@ function Page() {
 
   const { data, error, isLoading } = useSWR(`${baseURL}/sector`, fetcher);
 
->>>>>>> refs/remotes/origin/main
   return (
     <>
       <div className="w-[100vw] z-10">
@@ -84,11 +61,7 @@ function Page() {
           <Sidebar />
         </div>
         <Toaster />
-<<<<<<< HEAD
-        <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
-=======
         <div className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2">
->>>>>>> refs/remotes/origin/main
           <form className="w-full max-w-lg" onSubmit={handleSubmit(onSubmit)}>
             <h1 className="text-2xl">Village Master Form</h1>
             <div className="flex flex-wrap -mx-3 mb-6 mt-5">
@@ -121,29 +94,6 @@ function Page() {
                   {...register("sectorId", { required: true })}
                   className="w-full p-2 mb-4 border rounded-md"
                 >
-<<<<<<< HEAD
-                  {!isLoading
-                    ? (
-                      data && data.data
-                        ? (
-                          data.data.map((info: any) => (
-                            <option value={info.id} key={info.id}>
-                              {info.name}
-                            </option>
-                          ))
-                        )
-                        : (
-                          <option value="" key="no-data">
-                            No data available
-                          </option>
-                        )
-                    )
-                    : (
-                      <option value="" key="loading">
-                        Loading...
-                      </option>
-                    )}
-=======
                   {!isLoading ? (
                     data && data.data ? (
                       data.data.map((info: any) => (
@@ -161,7 +111,6 @@ function Page() {
                       Loading...
                     </option>
                   )}
->>>>>>> refs/remotes/origin/main
                 </select>
               </div>
             </div>
