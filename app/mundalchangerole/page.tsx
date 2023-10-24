@@ -1,5 +1,4 @@
 'use client'
-'use client'
 import { Toaster } from "react-hot-toast";
 import { useForm, Controller } from "react-hook-form";
 import { NavbarLogout } from "../components/navbarlogout";
@@ -8,11 +7,19 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 export default function Page() {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const [info, setInfo] = useState<KarykartaData>();
+  const [load, setLoad] = useState(true);
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    const dataParam = searchParams.get("data");
+    if (dataParam) {
+      console.log(dataParam);
+      setInfo(JSON.parse(dataParam));
+      setLoad(false);
+    }
+  }, []);
+
+  const { control, handleSubmit } = useForm(); // Uncomment this line to initialize handleSubmit
 
   const onSubmit = (data) => {
     // Your form submission logic here
@@ -82,6 +89,6 @@ export default function Page() {
           </form>
         </div>
       </div>
-        </>
-    )
+    </>
+  );
 }
