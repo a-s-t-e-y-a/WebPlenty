@@ -107,15 +107,22 @@ export default function Page() {
                     <td className="px-6 py-4">{info.role}</td>
                     <td className="px-6 py-4">
                       <Link
-                        href="../mundalmasterformedit"
+                        href={{
+                          pathname: "../mundalchangerole/",
+                          query: {
+                            data:JSON.stringify(info),
+                          },
+                        }}
                         className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                       >
                         Change Role
                       </Link>
                     </td>
                     <td className="px-6 py-4">
-                      <button  onClick={() => onClickDelete(info.id)}
-                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                      <button
+                        onClick={() => onClickDelete(info.id)}
+                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      >
                         Delete
                       </button>
                     </td>
