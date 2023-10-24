@@ -5,13 +5,14 @@ import toast, { Toaster } from "react-hot-toast";
 import { api } from "../pages/api";
 
 export function Table() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Author []>();
   const [error, setError] = useState(null); // Changed to null to represent no error
   const [loading, setLoading] = useState(true);
 
   async function fetchData() {
     try {
-      const response = await api.get("/user");
+      const response = await api.get("/village");
+      console.log(response)
       setData(response.data.data);
       setLoading(false);
     } catch (error: any) {
@@ -62,7 +63,7 @@ export function Table() {
               <th scope="col" className="px-6 py-3">
                 Sr.No.
               </th>
-             
+
               <th scope="col" className="px-6 py-3">
                 Name
               </th>
@@ -78,7 +79,7 @@ export function Table() {
             </tr>
           </thead>
           <tbody>
-            {data.map((info, index) => (
+            {data?data.map((info:Author, index:number) => (
               <tr
                 key={info.id}
                 className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
@@ -90,7 +91,7 @@ export function Table() {
                   {index + 1}
                 </th>
                 <td className="px-6 py-4">{info.name}</td>
-                <td className="px-6 py-4">{info.sector}</td>
+                <td className="px-6 py-4">{info.sector.name}</td>
                 <td className="px-6 py-4">
                   <Link
                     href={{
@@ -112,7 +113,7 @@ export function Table() {
                   </button>
                 </td>
               </tr>
-            ))}
+            )):(<div>Loading ...</div>)}
           </tbody>
         </table>
         <Toaster />
@@ -120,3 +121,16 @@ export function Table() {
     </>
   );
 }
+
+interface Author {
+  id: number;
+  name: string;
+  sector: Sector;
+}
+
+interface Sector {
+  id: number;
+  mundalId: number;
+  name: string;
+}
+

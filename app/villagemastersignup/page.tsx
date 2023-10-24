@@ -1,20 +1,29 @@
-'use client'
+"use client";
 import { NavbarLogout } from "../components/navbarlogout";
 import { Sidebar } from "../components/sidebar";
-import { useForm, Controller } from "react-hook-form";
-
+import { Controller, useForm } from "react-hook-form";
 import { api, baseURL } from "../pages/api";
 import useSWR from "swr";
 import toast, { Toaster } from "react-hot-toast";
-import { SendToBack } from "lucide-react";
 function Page() {
   const {
     control,
     handleSubmit,
+    register,
     formState: { errors },
   } = useForm();
+    function getAuthToken() {
+    return localStorage.getItem("accessToken");
+  }
+  const fetcher = (url: string) =>
+    fetch(url, {
+      headers: {
+        authorization: `${getAuthToken()}`, // Include the token here
+      },
+    }).then((res) => res.json());
+  const { data, error, isLoading } = useSWR(`${baseURL}/sector`, fetcher);
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     return api
       .post("/village", {
         ...data,
@@ -27,27 +36,17 @@ function Page() {
             background: "#333",
             color: "#fff",
           },
-          
         });
         setTimeout(() => {
           window.location.reload();
         }, 500);
-        
       })
       .catch(function (error) {
         toast.error(error.response.data.message);
       });
-      function getAuthToken() {
-        return localStorage.getItem('accessToken');
-      }
-      const fetcher = (url: string) =>
-      fetch(url, {
-        headers: {
-          authorization: `${getAuthToken()}`, // Include the token here
-        },
-      }).then((res) => res.json());
-      const { data, error, isLoading } = useSWR(`${baseURL}/sector`, fetcher);
   };
+   if(isLoading) return<div>Loading .... </div>
+  if(error)return <div>error</div>
   return (
     <>
       <div className="w-[100vw]  z-10">
@@ -57,7 +56,7 @@ function Page() {
         <div>
           <Sidebar />
         </div>
-        <Toaster/>
+        <Toaster />
         <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
           <form className="w-full max-w-lg" onSubmit={handleSubmit(onSubmit)}>
             <h1 className="text-2xl">Village Master Form</h1>
@@ -88,30 +87,32 @@ function Page() {
                   Sector
                 </label>
                 <select
-  {...register("sectorId", { required: true })}
-  className="w-full p-2 mb-4 border rounded-md"
->
-  {!isLoading ? (
-    data && data.data ? (
-      data.data.map((info: any) => (
-        <option value={info.id} key={info.id}>
-          {info.name}
-        </option>
-      ))
-    ) : (
-      <option value="" key="no-data">
-        No data available
-      </option>
-    )
-  ) : (
-    <option value="" key="loading">
-      Loading...
-    </option>
-  )}
-</select>
-
+                  {...register("sectorId", { required: true })}
+                  className="w-full p-2 mb-4 border rounded-md"
+                >
+                  {!isLoading
+                    ? (
+                      data && data.data
+                        ? (
+                          data.data.map((info: any) => (
+                            <option value={info.id} key={info.id}>
+                              {info.name}
+                            </option>
+                          ))
+                        )
+                        : (
+                          <option value="" key="no-data">
+                            No data available
+                          </option>
+                        )
+                    )
+                    : (
+                      <option value="" key="loading">
+                        Loading...
+                      </option>
+                    )}
+                </select>
               </div>
-              
             </div>
 
             <button

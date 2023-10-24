@@ -6,6 +6,7 @@ import { api } from "../pages/api";
 import { v4 as uuidv4 } from "uuid";
 
 export function Table({ data, url }: any) {
+  
   function del(id: number) {
   if(confirm('यदि आप मंडल को हटाते हैं तो मंडल से संबंधित सभी डेटा हटा दिए जाते हैं')){
       const del = api
@@ -135,7 +136,7 @@ export function Table({ data, url }: any) {
                 <td className="px-6 py-4">{info.id}</td>
                 <td className="px-6 py-4">{info.name}</td>
                 <td className="px-6 py-4">
-                  {info.sector != null ? info.sector.length : "0"}
+                  {info.Sector != null ? info.Sector.length : "0"}
                 </td>
                 <td className="px-6 py-4">
                   {info.karyakarta != null ? info.karyakarta.length : "0"}
