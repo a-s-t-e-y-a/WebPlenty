@@ -65,6 +65,9 @@ export function Table({ data }: any) {
                 Total Karyakarta
               </th>
               <th scope="col" className="px-6 py-3">
+                Open
+              </th>
+              <th scope="col" className="px-6 py-3">
                 Action
               </th>
               <th scope="col" className="px-6 py-3">
@@ -88,6 +91,14 @@ export function Table({ data }: any) {
                 <td className="px-6 py-4">{info.sectorId!==null?info.sectorId:"None"}</td>
                 <td className="px-6 py-4">{info.sectorId!==null?info.sectorId:"None"}</td>
                 <td className="px-6 py-4">{info.karykarta!== null?info.karykarta.length:"No data available"}</td>
+                <td className="px-6 py-4">
+                  <Link
+                    href="../boothmasterdetails"
+                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                  >
+                    Open
+                  </Link>
+                </td>
                 <td className="px-6 py-4">
                   <a
                     href="#"
