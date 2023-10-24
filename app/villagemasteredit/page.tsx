@@ -1,8 +1,13 @@
 "use client";
 import { NavbarLogout } from "../components/navbarlogout";
 import { Sidebar } from "../components/sidebar";
+<<<<<<< HEAD
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+=======
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { useEffect , useState} from "react";
+>>>>>>> refs/remotes/origin/main
 import { api } from "../pages/api";
 import toast, { Toaster } from "react-hot-toast";
 import { useSearchParams } from "next/navigation";
