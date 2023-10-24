@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -11,7 +11,7 @@ import { api } from "../pages/api";
 import { useSearchParams } from "next/navigation";
 
 export default function Page() {
-  const [info, setInfo] = useState();
+  const [info, setInfo] = useState<UserData>();
   const [load, setLoad] = useState(true);
   const searchParams = useSearchParams();
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function Page() {
     }
   }, []);
   const { handleSubmit, control } = useForm();
-console.log(info)
+  console.log(info);
   const handleFormSubmit = async (data: any) => {
     console.log(data);
     try {
@@ -40,7 +40,7 @@ console.log(info)
       setTimeout(() => {
         window.location.reload();
       }, 500);
-    } catch (error:any) {
+    } catch (error: any) {
       console.log(error);
       toast.error(error.response.data.message, {
         icon: "😥",
@@ -52,7 +52,13 @@ console.log(info)
       });
     }
   };
-
+  if (load) {
+    return (
+      <>
+        <div>Loading</div>
+      </>
+    );
+  }
   return (
     <section>
       <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
@@ -77,14 +83,17 @@ console.log(info)
           <form onSubmit={handleSubmit(handleFormSubmit)} className="mt-8">
             <div className="space-y-5">
               <div>
-                <label htmlFor="name" className="text-base font-medium text-gray-900">
+                <label
+                  htmlFor="name"
+                  className="text-base font-medium text-gray-900"
+                >
                   Name
                 </label>
                 <div className="mt-2">
                   <Controller
                     name="name"
                     control={control}
-                    defaultValue={info ? info.email : ""}
+                    defaultValue={info ? info.name : ""}
                     render={({ field }) => (
                       <input
                         {...field}
@@ -97,14 +106,17 @@ console.log(info)
                 </div>
               </div>
               <div>
-                <label htmlFor="phoneNumber" className="text-base font-medium text-gray-900">
+                <label
+                  htmlFor="phoneNumber"
+                  className="text-base font-medium text-gray-900"
+                >
                   Phone Number
                 </label>
                 <div className="mt-2">
                   <Controller
                     name="phoneNumber"
                     control={control}
-                    defaultValue=""
+                    defaultValue={info ? info.phoneNumber : ""}
                     render={({ field }) => (
                       <input
                         {...field}
@@ -117,14 +129,17 @@ console.log(info)
                 </div>
               </div>
               <div>
-                <label htmlFor="dob" className="text-base font-medium text-gray-900">
+                <label
+                  htmlFor="dob"
+                  className="text-base font-medium text-gray-900"
+                >
                   Date of Birth (DOB)
                 </label>
                 <div className="mt-2">
                   <Controller
                     name="dob"
                     control={control}
-                    defaultValue=""
+                    defaultValue={info ? info.dob : ""}
                     render={({ field }) => (
                       <input
                         {...field}
@@ -137,14 +152,17 @@ console.log(info)
                 </div>
               </div>
               <div>
-                <label htmlFor="email" className="text-base font-medium text-gray-900">
+                <label
+                  htmlFor="email"
+                  className="text-base font-medium text-gray-900"
+                >
                   Email address
                 </label>
                 <div className="mt-2">
                   <Controller
                     name="email"
                     control={control}
-                    defaultValue=""
+                    defaultValue={info ? info.email : ""}
                     render={({ field }) => (
                       <input
                         {...field}
@@ -157,7 +175,10 @@ console.log(info)
                 </div>
               </div>
               <div>
-                <label htmlFor="password" className="text-base font-medium text-gray-900">
+                <label
+                  htmlFor="password"
+                  className="text-base font-medium text-gray-900"
+                >
                   Password
                 </label>
                 <div className="mt-2">
@@ -190,4 +211,11 @@ console.log(info)
       </div>
     </section>
   );
+}
+interface UserData {
+  email: string;
+  name: string;
+  phoneNumber: string;
+  dob: string;
+  password: string;
 }
