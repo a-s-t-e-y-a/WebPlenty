@@ -1,34 +1,20 @@
 import axios from "axios";
 
-
-// export const baseURL = "https://api.ketakeesingh362bansdih.in/api"; 
-export const baseURL = "https://4e77-2409-40d2-1025-8dac-5109-ee6f-7111-e43a.ngrok-free.app/"
-// export const baseURL = 'http://localhost:5555/api'
+export const baseURL = 'http://localhost:5555/api';
+// export const baseURL = 'http://f544-2409-40d2-1025-8dac-5109-ee6f-7111-e43a.ngrok-free.app/api'
 export const api = axios.create({
   baseURL,
   headers: {
     "Content-Type": "application/json",
-  },  
+  },
 });
 
-
-function getTokenFromLocalStorage() {
-  return localStorage.getItem("accessToken"); 
+// Add authorization token from local storage to the headers
+const token = localStorage.getItem("accessToken"); // Replace "your_token_key" with the actual key you use in local storage
+console.log(token)
+if (token) {
+  api.defaults.headers.common["authorization"] = `${token}`;
 }
 
-api.interceptors.request.use(
-  (config) => {
-    const token = getTokenFromLocalStorage();
-
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
 export default api;
+

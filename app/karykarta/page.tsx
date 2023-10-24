@@ -8,6 +8,8 @@ import { api, baseURL } from "../pages/api";
 import { ArrowLeft } from "lucide-react";
 import useSWR from "swr";
 import { useForm, Controller } from "react-hook-form";
+import { useRouter } from "next/navigation";
+
 
 
 const Page = () => {
@@ -15,7 +17,8 @@ const Page = () => {
   const [loading, setLoading] = useState(true);
   const [infoError, setInfoError] = useState(null);
   const [url, seturl] = useState("/karykarta");
-
+  const [token, setToken] = useState(true)
+  const router = useRouter()
   const fetchData = async () => {
     try {
       const response = await api.get(url);
@@ -32,6 +35,12 @@ const Page = () => {
   };
 
   useEffect(() => {
+    const token = localStorage.getItem('accessToken')
+    if (!token){
+      router.push('/login')
+    }else{
+      setToken(false)
+    }
     fetchData();
   }, [url]);
   const fetcher = (...args: any) => fetch(args).then((res) => res.json());
@@ -70,7 +79,14 @@ const Page = () => {
     // Use finalURL as needed
     console.log(finalURL);
   };
-
+  if(token){
+    return (
+    <div>
+        authenticatiing
+    </div>
+    )
+  }
+    
   if (error)
     return (
       <div

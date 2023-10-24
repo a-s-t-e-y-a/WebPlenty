@@ -1,4 +1,4 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { api, baseURL } from "../pages/api";
 import useSWR from "swr";
 import toast, { Toaster } from "react-hot-toast";
@@ -31,7 +31,9 @@ type FormValue = {
   mundalId: number;
   role: string;
 };
-
+function getAuthToken() {
+  return localStorage.getItem('accessToken');
+}
 async function postKarykarta(data: KarykartaFormData) {
   return api
     .post("/karykarta", {
@@ -47,7 +49,12 @@ async function postKarykarta(data: KarykartaFormData) {
 
 const KarykartaForm: React.FC<KarykartaFormProps> = () => {
   const [info, setInfo] = useState(false);
-  const fetcher = (...args: any) => fetch(args).then((res) => res.json());
+  const fetcher = (url: string) =>
+  fetch(url, {
+    headers: {
+      authorization: `${getAuthToken()}`, // Include the token here
+    },
+  }).then((res) => res.json());
   const {
     register,
     handleSubmit,
@@ -69,16 +76,11 @@ const KarykartaForm: React.FC<KarykartaFormProps> = () => {
             background: "#333",
             color: "#fff",
           },
-          
-        },
-     
-        );
+        });
         setTimeout(() => {
           window.location.reload();
         }, 1000);
-        
-      }
-      )
+      })
       .catch(function (error) {
         toast.error(error.response.data.message);
       });
@@ -86,7 +88,7 @@ const KarykartaForm: React.FC<KarykartaFormProps> = () => {
   const { data, error, isLoading } = useSWR(`${baseURL}/mundal`, fetcher);
 
   if (error) return <div>failed to load</div>;
-  if (isLoading)
+  if (isLoading) {
     return (
       <div role="status">
         <svg
@@ -108,6 +110,7 @@ const KarykartaForm: React.FC<KarykartaFormProps> = () => {
         <span className="sr-only">Loading...</span>
       </div>
     );
+  }
   // console.log(data.data[0].name);
 
   return (
@@ -132,9 +135,9 @@ const KarykartaForm: React.FC<KarykartaFormProps> = () => {
       <label className="block mb-2 font-bold text-gray-700">
         Mobile Number:
       </label>
-      <input 
-      type="text"
-        {...register("mobileNumber", { required: true, maxLength:10  },)}
+      <input
+        type="text"
+        {...register("mobileNumber", { required: true, maxLength: 10 })}
         className="w-full p-2 mb-4 border rounded-md"
       />
 
@@ -183,17 +186,19 @@ const KarykartaForm: React.FC<KarykartaFormProps> = () => {
         {...register("mundalId", { required: true })}
         className="w-full p-2 mb-4 border rounded-md"
       >
-        {!isLoading ? (
-          data.data.map((info: any) => (
-            <option value={info.id} key={info.id}>
-              {info.name}
+        {!isLoading
+          ? (
+            data.data.map((info: any) => (
+              <option value={info.id} key={info.id}>
+                {info.name}
+              </option>
+            ))
+          )
+          : (
+            <option value="" key="loading">
+              Loading...
             </option>
-          ))
-        ) : (
-          <option value="" key="loading">
-            Loading...
-          </option>
-        )}
+          )}
       </select>
 
       <label className="block mb-2 font-bold text-gray-700">Role:</label>
