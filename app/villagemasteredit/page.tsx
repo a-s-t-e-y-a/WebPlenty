@@ -1,15 +1,10 @@
 "use client";
 import { NavbarLogout } from "../components/navbarlogout";
 import { Sidebar } from "../components/sidebar";
-<<<<<<< HEAD
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-=======
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { useEffect , useState} from "react";
->>>>>>> refs/remotes/origin/main
+import { useEffect, useState } from "react";
 import { api } from "../pages/api";
 import toast, { Toaster } from "react-hot-toast";
-import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
@@ -17,7 +12,7 @@ export default function Page() {
   const [info, setInfo] = useState(null); // Specify the type for `info` or initialize it as null
   const [load, setLoad] = useState(true);
   const searchParams = useSearchParams();
-  const router = useRouter()
+  const router = useRouter();
   useEffect(() => {
     const dataParam = searchParams.get("data");
     if (dataParam) {
@@ -35,13 +30,13 @@ export default function Page() {
   } = useForm(); // You need to specify the type for `FormValue`.
 
   const onSubmit: SubmitHandler<FormValue> = (data) => {
-        return api
+    return api
       .put(`/village/${info ? info.id : ""}`, {
         ...data,
-        sectorId:info.sector.id
+        sectorId: info.sector.id,
       })
       .then(function (response) {
-        router.push('/villagemaster')
+        router.push("/villagemaster");
         toast(response.data.message, {
           icon: "👏",
           style: {
@@ -54,7 +49,6 @@ export default function Page() {
       .catch(function (error) {
         toast.error(error.response.data.message);
       });
-
   };
 
   async function Postvillage(data) {
