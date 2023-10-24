@@ -17,7 +17,7 @@ export default function SignInOne() {
     console.log(data);
     api.post('/user/login',{
       ...data
-    },{ withCredentials: true,  })
+    })
     .then((info)=>{
       localStorage.setItem("accessToken", info.data.data);
       toast(info.data.message, {
