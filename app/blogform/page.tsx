@@ -18,15 +18,14 @@ export default function Page() {
     console.log(data);
     const formData = new FormData();
 
-    // Append each field to the FormData object
-    for (const key in data) {
-      formData.append(key, data[key]);
-    }
+    formData.append("content", data.content);
+    formData.append("title", data.title);
+    formData.append("image", data.image[0]);
     return api
-      .post("/blog", formData,{
-        headers:{
-           'Content-Type': 'multipart/form-data'
-        }
+      .post("/blog", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       })
       .then(function (response) {
         toast(response.data.message, {
@@ -37,9 +36,9 @@ export default function Page() {
             color: "#fff",
           },
         });
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 1000);
       })
       .catch(function (error) {
         console.log(error);
