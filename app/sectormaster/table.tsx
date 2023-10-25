@@ -132,7 +132,7 @@ export function Table({ data }: any) {
                     href={{
                       pathname: "../sectormasterformedit",
                       query: {
-                        data: info.name,
+                        data:JSON.stringify(info)
                       },
                     }}
                     className="font-medium text-blue-600 dark:text-blue-500 hover:underline"

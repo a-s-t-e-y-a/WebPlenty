@@ -5,7 +5,9 @@ import { Controller, useForm } from "react-hook-form";
 import { api } from "../pages/api";
 import toast, { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+
+
 function Page() {
   const {
     control,
@@ -15,6 +17,7 @@ function Page() {
   const [info, setInfo] = useState();
   const [load, setLoad] = useState(true);
   const searchParams = useSearchParams();
+  const router = useRouter();
   useEffect(() => {
     const dataParam = searchParams.get("data");
     if (dataParam) {
@@ -39,8 +42,9 @@ function Page() {
             color: "#fff",
           },
         });
+        
         setTimeout(() => {
-          window.location.reload();
+          router.push("../sectormaster");
         }, 500);
       })
       .catch(function (error) {
@@ -60,7 +64,7 @@ function Page() {
         <Toaster />
         <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
           <form className="w-full max-w-lg" onSubmit={handleSubmit(onSubmit)}>
-            <h1 className="text-2xl">Mundal Master Form</h1>
+            <h1 className="text-2xl">Sector Master Update</h1>
             <div className="flex flex-wrap -mx-3 mb-6 mt-5">
               <div className="w-full px-3">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
