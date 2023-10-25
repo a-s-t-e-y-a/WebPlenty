@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import api from "../pages/api";
 import toast from "react-hot-toast";
+import { NavbarLogout } from "../components/navbarlogout";
 
 interface IFormInput {
   title: string; // Change "String" to "string" for lowercase data type
@@ -63,7 +64,7 @@ export default function Page() {
   
   return (
     <>
-      <Navbar></Navbar>
+      <NavbarLogout></NavbarLogout>
       <h1 className="text-center font-bold text-2xl">Blog</h1>
       <hr></hr>
       <div className=" text-center">image upload feature</div>
