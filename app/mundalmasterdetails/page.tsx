@@ -92,7 +92,7 @@ export default function Page() {
                 </tr>
               </thead>
               <tbody>
-                {data.karyakarta.map((info: any, index: number) => (
+                {data?data.karyakarta.map((info: any, index: number) => (
                   <tr
                     key={info.id}
                     className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
