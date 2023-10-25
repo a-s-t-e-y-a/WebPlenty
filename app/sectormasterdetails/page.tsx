@@ -148,49 +148,65 @@ export default function Page() {
           </div>
 
           <hr className="my-10" />
-          {data.karykarta.length <2 ?
+
           <div className="flex flex-wrap">
-            <form // onSubmit={handleSubmit(onSubmit)}
-            className="w-[300px] mx-auto mt-8 p-4 bg-gray-300 rounded-md">
-              <label className="block mb-2 font-bold text-gray-700">
-                Select Sanyojak
-              </label>
-              <select // {...register("religion", { required: true })}
-              className="w-full p-2 mb-4 border rounded-md"// defaultValue={info ? info.religion : ""}
-              >
-                <option value="hindu">abc</option>
-                <option value="muslim">efg</option>
-              </select>
+            {data &&
+                ((data.karykarta.length === 0) ||
+                  (data.karykarta.length > 0 &&
+                    data.karykarta[0].role !== "shaktikendraSanyojak"))
+              ? (
+                <form // onSubmit={handleSubmit(onSubmit)}
+                 className="w-[300px] mx-auto mt-8 p-10 bg-gray-300 rounded-md">
+                  <label className="block mb-2 font-bold text-gray-700">
+                    Select sanyojak
+                  </label>
+                  <select // {...register("religion", { required: true })}
+                   className="w-full p-2 mb-4 border rounded-md" // defaultValue={info ? info.religion : ""}
+                  >
+                    {karyakarta&&karyakarta.map((i_:any) => (
+                      <option value={i_.id}>{i_.name}</option>
+                    ))}
+                  </select>
 
-              <button
-                type="submit"
-                className="mt-4 p-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
-              >
-                Submit
-              </button>
-              <Toaster />
-            </form>
-            <form // onSubmit={handleSubmit(onSubmit)}
-            className="w-[300px] mx-auto mt-8 p-10  bg-gray-300 rounded-md">
-              <label className="block mb-2 font-bold text-gray-700">
-                Select prabhari
-              </label>
-              <select // {...register("religion", { required: true })}
-              className="w-full p-2 mb-4 border rounded-md"// defaultValue={info ? info.religion : ""}
-              >
-                <option value="hindu">abc</option>
-                <option value="muslim">efg</option>
-              </select>
+                  <button
+                    type="submit"
+                    className="mt-4 p-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
+                  >
+                    Submit
+                  </button>
+                  <Toaster />
+                </form>
+              )
+              : null}
+            {data &&
+                ((data.karykarta.length === 0) ||
+                  (data.karykarta.length > 0 &&
+                    data.karykarta[0].role !== "shaktikendraprabhari"))
+              ? (
+                <form // onSubmit={handleSubmit(onSubmit)}
+                 className="w-[299px] mx-auto mt-8 p-10  bg-gray-300 rounded-md">
+                  <label className="block mb-3 font-bold text-gray-700">
+                    Select prabhari
+                  </label>
+                  <select // {...register("religion", { required: true })}
+                   className="w-full p-3 mb-4 border rounded-md" // defaultValue={info ? info.religion : ""}
+                  >
+                   {karyakarta&&karyakarta.map((i_:any) => (
+                      <option value={i_.id}>{i_.name}</option>
+                    ))}
+                  </select>
 
-              <button
-                type="submit"
-                className="mt-4 p-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
-              >
-                Submit
-              </button>
-              <Toaster />
-            </form>
-          </div>:<div></div>}
+                  <button
+                    type="submit"
+                    className="mt-5 p-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
+                  >
+                    Submit
+                  </button>
+                  <Toaster />
+                </form>
+              )
+              : null}
+          </div>
         </div>
       </div>
     </>
