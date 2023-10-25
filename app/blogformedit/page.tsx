@@ -1,6 +1,10 @@
-'use client'
+"use client";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Navbar } from "../components/navbar";
+import { useEffect, useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
+import api from "../pages/api";
+import toast from "react-hot-toast";
 
 interface IFormInput {
   title: string; // Change "String" to "string" for lowercase data type
@@ -8,12 +12,55 @@ interface IFormInput {
 }
 
 export default function Page() {
+  const [info, setInfo] = useState<KarykartaData>();
+  const [load, setLoad] = useState(true);
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    const dataParam = searchParams.get("data");
+    if (dataParam) {
+      console.log(dataParam);
+      setInfo(JSON.parse(dataParam));
+      setLoad(false);
+    }
+  }, []);
   const { register, handleSubmit } = useForm<IFormInput>();
   
+  const router = useRouter();
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log(data); // Log the form data
+  
+    api
+    .patch(`/blog/${info ? info.id : ""}`,{
+        ...data,
+      })
+      .then((info) => {
+        toast(info.data.message, {
+          icon: "😎",
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
+        router.push("/blogcontroller");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast(error.response.data.message, {
+          icon: "😥",
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
+      });
   };
 
+  if (load) return <div>loading....</div>;
+
+  // const { register, handleSubmit } = useForm<IFormInput>();
+  
   return (
     <>
       <Navbar></Navbar>
@@ -27,16 +74,22 @@ export default function Page() {
             className="h-[10vh] w-[80vw] my-10 p-5  border-2 border-black	"
             placeholder="heading"
             {...register("title")}
+            defaultValue={info ? info.title : ""}
           ></input>
         </div>
         <div>
           <textarea
             placeholder="main content"
             {...register("content")}
-            className="h-[50vh] w-[80vw] my-3 p-5  border-2 border-black"
+            defaultValue={info ? info.content : ""}
+            className="h-[50vh] w-[80vw] my-3 p-5 border-2 border-black"
           ></textarea>
         </div>
-        <input type="submit" className="border-2 border-black w-[80vw] h-10" value="submit" />
+        <input
+          type="submit"
+          className="border-2 border-black w-[80vw] h-10"
+          value="submit"
+        />
       </form>
     </>
   );

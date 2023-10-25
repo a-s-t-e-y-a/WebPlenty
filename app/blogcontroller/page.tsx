@@ -8,21 +8,49 @@ import { useState, useEffect } from "react";
 import api from "../pages/api";
 
 export default function Page() {
-  const [data, setData] = useState([]); // Replace with your actual data
+  const [data, setData] = useState({});
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
+  async function fetchData() {
+    await api
+      .get("/blog")
+      .then((info) => {
+        setData(info.data.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  }
   useEffect(() => {
-    // Fetch your data here
-    const fetchData = async () => {
-      try {
-        const response = await api.get("/your-api-endpoint"); // Replace with your API endpoint
-        setData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     fetchData();
   }, []);
+  function onClickDelete(id: number) {
+    const del = api
+      .delete(`blog/${id}`)
+      .then((response) => {
+        toast(response.data.message, {
+          icon: "👏",
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      })
+      .catch(function (error) {
+        toast.error(error.response.data.message);
+        console.log(error.response.data.message);
+      });
+    console.log(del);
+  }
+  console.log(data);
+  if (error) return <div>error..... !!!!!</div>;
+  if (loading) return <div>loading....</div>;
 
   return (
     <>
@@ -61,22 +89,27 @@ export default function Page() {
                 </tr>
               </thead>
               <tbody>
-                {/* {data.map((info, index) => ( */}
+                {data.map((info, index) => (
                 <tr
-                  // key={info.id}
+                  key={info.id}
                   className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
                 >
                   <th
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    {/* {index + 1} */}
+                    {index + 1}
                   </th>
-                  <td className="px-6 py-4"></td>
+                  <td className="px-6 py-4">{info.title}</td>
                   
                   <td className="px-6 py-4">
                     <Link
-                      href="../blogformedit"
+                      href={{
+                        pathname: "../blogformedit",
+                        query: {
+                          data: JSON.stringify(info),
+                        },
+                      }}
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     >
                       Update
@@ -84,14 +117,14 @@ export default function Page() {
                   </td>
                   <td className="px-6 py-4">
                     <button
-                      // onClick={() => del(info.id)}
+                      onClick={() => onClickDelete(info.id)}
                       className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     >
                       Delete
                     </button>
                   </td>
                 </tr>
-                {/* ))} */}
+                ))}
               </tbody>
             </table>
           </div>
