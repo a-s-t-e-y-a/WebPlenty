@@ -7,17 +7,55 @@ import { NavbarLogout } from "../components/navbarlogout";
 import { useEffect, useState } from "react";
 import api from "../pages/api";
 import { useSearchParams } from "next/navigation";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
+interface Karyakarta {
+  id: string;
+  name: string;
+}
+
+interface FormValues {
+  sanyojak:string
+  prabhari:string
+}
 export default function Page() {
   const [load, setLoad] = useState(true);
   const [data, setData] = useState();
   const [error, setError] = useState(false);
+  const [sectorId , setSectorId] = useState()
   const [karyakarta, setKarykartaData] = useState();
   const searchParams = useSearchParams();
+  const { control, handleSubmit } = useForm<FormValues>();
+
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    // Handle form submission here
+    console.log(data);
+    api
+      .post(`/sector/add/`, {
+        ...data,
+        sector:sectorId
+      })
+      .then(function (response) {
+        toast(response.data.message, {
+          icon: "👏",
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
+      })
+      .catch(function (error) {
+        toast.error(error.response.data.message);
+      });
+
+  };
+
   useEffect(() => {
     const dataParam = searchParams.get("data");
     if (dataParam) {
       console.log(dataParam);
+      setSectorId(JSON.parse(dataParam))
       api
         .get(`/sector/${JSON.parse(dataParam)}`)
         .then((info) => {
@@ -155,18 +193,31 @@ export default function Page() {
                   (data.karykarta.length > 0 &&
                     data.karykarta[0].role !== "shaktikendraSanyojak"))
               ? (
-                <form // onSubmit={handleSubmit(onSubmit)}
-                 className="w-[300px] mx-auto mt-8 p-10 bg-gray-300 rounded-md">
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="w-[300px] mx-auto mt-8 p-10 bg-gray-300 rounded-md"
+                >
                   <label className="block mb-2 font-bold text-gray-700">
                     Select sanyojak
                   </label>
-                  <select // {...register("religion", { required: true })}
-                   className="w-full p-2 mb-4 border rounded-md" // defaultValue={info ? info.religion : ""}
-                  >
-                    {karyakarta&&karyakarta.map((i_:any) => (
-                      <option value={i_.id}>{i_.name}</option>
-                    ))}
-                  </select>
+                  <Controller
+                    name="sanyojak"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => (
+                      <select
+                        {...field}
+                        className="w-full p-2 mb-4 border rounded-md"
+                      >
+                        {karyakarta &&
+                          karyakarta.map((i_: any) => (
+                            <option key={i_.id} value={i_.id}>
+                              {i_.name}
+                            </option>
+                          ))}
+                      </select>
+                    )}
+                  />
 
                   <button
                     type="submit"
@@ -183,18 +234,31 @@ export default function Page() {
                   (data.karykarta.length > 0 &&
                     data.karykarta[0].role !== "shaktikendraprabhari"))
               ? (
-                <form // onSubmit={handleSubmit(onSubmit)}
-                 className="w-[299px] mx-auto mt-8 p-10  bg-gray-300 rounded-md">
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="w-[299px] mx-auto mt-8 p-10 bg-gray-300 rounded-md"
+                >
                   <label className="block mb-3 font-bold text-gray-700">
                     Select prabhari
                   </label>
-                  <select // {...register("religion", { required: true })}
-                   className="w-full p-3 mb-4 border rounded-md" // defaultValue={info ? info.religion : ""}
-                  >
-                   {karyakarta&&karyakarta.map((i_:any) => (
-                      <option value={i_.id}>{i_.name}</option>
-                    ))}
-                  </select>
+                  <Controller
+                    name="prabhari"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => (
+                      <select
+                        {...field}
+                        className="w-full p-3 mb-4 border rounded-md"
+                      >
+                        {karyakarta &&
+                          karyakarta.map((i_) => (
+                            <option key={i_.id} value={i_.id}>
+                              {i_.name}
+                            </option>
+                          ))}
+                      </select>
+                    )}
+                  />
 
                   <button
                     type="submit"
