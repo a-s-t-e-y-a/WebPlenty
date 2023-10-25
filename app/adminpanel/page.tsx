@@ -4,8 +4,26 @@ import { NavbarLogout } from "../components/navbarlogout";
 import { Sidebar } from "../components/sidebar";
 import { Table } from "./table";
 import { api } from "../pages/api";
+import { useRouter } from "next/navigation";
 
 function Page() {
+  const [token , setToken] = useState(true)
+  const router = useRouter();
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      router.push("/login");
+    }else{
+      setToken(false)
+    }
+  }, []);
+   if(token){
+    return (
+    <div>
+        authenticating
+    </div>
+    )
+  }
 
   return (
     <>

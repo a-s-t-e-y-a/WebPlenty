@@ -4,12 +4,19 @@ import { NavbarLogout } from "../components/navbarlogout";
 import { Sidebar } from "../components/sidebar";
 import { Table } from "./table";
 import { api } from "../pages/api";
+import { useRouter } from "next/navigation";
 
 function Page() {
   const [data, setData] = useState({});
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
-
+ const router = useRouter();
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      router.push("/login");
+    }
+  }, []);
  async function fetchData(){
     await api
     .get('/sector')

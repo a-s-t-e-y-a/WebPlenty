@@ -4,9 +4,16 @@ import { NavbarLogout } from "../components/navbarlogout";
 import { Sidebar } from "../components/sidebar";
 import { Table } from "./table";
 import { api } from "../pages/api";
+import { useRouter } from "next/navigation";
 
 function Page() {
-
+ const router = useRouter();
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      router.push("/login");
+    }
+  }, []);
   return (
     <>
       <div className="w-[100vw]  z-10">

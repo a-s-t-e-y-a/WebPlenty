@@ -6,12 +6,21 @@ import toast, { Toaster } from "react-hot-toast";
 import { NavbarLogout } from "../components/navbarlogout";
 import { useState, useEffect } from "react";
 import api from "../pages/api";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const [data, setData] = useState([]); // Replace with your actual data
+ const router = useRouter();
 
   useEffect(() => {
     // Fetch your data here
+    
+  
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      router.push("/login");
+    }
+
     const fetchData = async () => {
       try {
         const response = await api.get("/your-api-endpoint"); // Replace with your API endpoint
