@@ -36,9 +36,9 @@ export default function Page() {
             color: "#fff",
           },
         });
-        // setTimeout(() => {
-        //   window.location.reload();
-        // }, 1000);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       })
       .catch(function (error) {
         console.log(error);
