@@ -15,14 +15,14 @@ interface Karyakarta {
 }
 
 interface FormValues {
-  sanyojak:string
-  prabhari:string
+  sanyojak: string;
+  prabhari: string;
 }
 export default function Page() {
   const [load, setLoad] = useState(true);
   const [data, setData] = useState();
   const [error, setError] = useState(false);
-  const [sectorId , setSectorId] = useState()
+  const [sectorId, setSectorId] = useState();
   const [karyakarta, setKarykartaData] = useState();
   const searchParams = useSearchParams();
   const { control, handleSubmit } = useForm<FormValues>();
@@ -33,7 +33,7 @@ export default function Page() {
     api
       .post(`/sector/add/`, {
         ...data,
-        sector:sectorId
+        sector: sectorId,
       })
       .then(function (response) {
         toast(response.data.message, {
@@ -48,14 +48,13 @@ export default function Page() {
       .catch(function (error) {
         toast.error(error.response.data.message);
       });
-
   };
 
   useEffect(() => {
     const dataParam = searchParams.get("data");
     if (dataParam) {
       console.log(dataParam);
-      setSectorId(JSON.parse(dataParam))
+      setSectorId(JSON.parse(dataParam));
       api
         .get(`/sector/${JSON.parse(dataParam)}`)
         .then((info) => {
@@ -188,10 +187,12 @@ export default function Page() {
           <hr className="my-10" />
 
           <div className="flex flex-wrap">
-            {data &&
-                ((data.karykarta.length === 0) ||
-                  (data.karykarta.length > 0 &&
-                    data.karykarta[0].role !== "shaktikendraSanyojak"))
+            {data && (
+                data.karykarta.length === 0 ||
+                data.karykarta.every((karykarta) =>
+                  karykarta.role !== "shaktikendraSanyojak"
+                )
+              )
               ? (
                 <form
                   onSubmit={handleSubmit(onSubmit)}
@@ -210,9 +211,9 @@ export default function Page() {
                         className="w-full p-2 mb-4 border rounded-md"
                       >
                         {karyakarta &&
-                          karyakarta.map((i_: any) => (
-                            <option key={i_.id} value={i_.id}>
-                              {i_.name}
+                          karyakarta.map((karyakarta) => (
+                            <option key={karyakarta.id} value={karyakarta.id}>
+                              {karyakarta.name}
                             </option>
                           ))}
                       </select>
@@ -229,10 +230,12 @@ export default function Page() {
                 </form>
               )
               : null}
-            {data &&
-                ((data.karykarta.length === 0) ||
-                  (data.karykarta.length > 0 &&
-                    data.karykarta[0].role !== "shaktikendraprabhari"))
+            {data && (
+                data.karykarta.length === 0 ||
+                data.karykarta.every((karykarta) =>
+                  karykarta.role !== "shaktikendraprabhari"
+                )
+              )
               ? (
                 <form
                   onSubmit={handleSubmit(onSubmit)}
@@ -251,9 +254,9 @@ export default function Page() {
                         className="w-full p-3 mb-4 border rounded-md"
                       >
                         {karyakarta &&
-                          karyakarta.map((i_) => (
-                            <option key={i_.id} value={i_.id}>
-                              {i_.name}
+                          karyakarta.map((karyakarta) => (
+                            <option key={karyakarta.id} value={karyakarta.id}>
+                              {karyakarta.name}
                             </option>
                           ))}
                       </select>
