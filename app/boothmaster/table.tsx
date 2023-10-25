@@ -93,7 +93,9 @@ export function Table({ data }: any) {
                 <td className="px-6 py-4">{info.karykarta!== null?info.karykarta.length:"No data available"}</td>
                 <td className="px-6 py-4">
                   <Link
-                    href="../boothmasterdetails"
+                    href={{pathname:"../boothmasterdetails",query:{
+                      data:JSON.stringify(info)
+                    }  }}
                     className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                   >
                     Open
