@@ -2,7 +2,7 @@ import React from "react";
 import {
   BarChart,
   Shield,
-  MessageSquare,
+  GalleryHorizontal,
   User,
   MapPin,
   FileEdit
@@ -99,19 +99,26 @@ export function Sidebar() {
                 content
               </label>
 
-              <Link
+              {/* <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
                 href="#"
               >
                 <MessageSquare className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Send SMS</span>
-              </Link>
+              </Link> */}
               <Link
                 className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
                 href="../blogcontroller"
               >
                 <FileEdit className="h-5 w-5" aria-hidden="true" />
                 <span className="mx-2 text-sm font-medium">Blog</span>
+              </Link>
+              <Link
+                className="flex transform items-center rounded-lg px-3 py-2 text-gray-600 transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
+                href="../gallery"
+              >
+                <GalleryHorizontal className="h-5 w-5" aria-hidden="true" />
+                <span className="mx-2 text-sm font-medium">Gallery</span>
               </Link>
             </div>
           </nav>

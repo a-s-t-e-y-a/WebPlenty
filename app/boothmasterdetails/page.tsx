@@ -34,7 +34,11 @@ export default function Page() {
             background: "#333",
             color: "#fff",
           },
+          
         });
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
       })
       .catch(function (error) {
         toast.error(error.response.data.message);
@@ -127,9 +131,7 @@ export default function Page() {
                     Role
                   </th>
 
-                  <th scope="col" className="px-6 py-3">
-                    Action
-                  </th>
+                  
                   <th scope="col" className="px-6 py-3">
                     Delete
                   </th>
@@ -149,14 +151,14 @@ export default function Page() {
                     </th>
                     <td className="px-6 py-4">{info.name}</td>
                     <td className="px-6 py-4">{info.role}</td>
-                    <td className="px-6 py-4">
+                    {/* <td className="px-6 py-4">
                       <Link
                         href="../mundalmasterformedit"
                         className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                       >
                         Update
                       </Link>
-                    </td>
+                    </td> */}
                     <td className="px-6 py-4">
                       <button
                         onClick={() => onClickDelete(info.id)}

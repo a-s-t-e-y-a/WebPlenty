@@ -24,6 +24,9 @@ export function Table({ data, url }: any) {
           // Handle errors here if needed
           console.error(error);
         });
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
     }
   }
   function download(type: string) {

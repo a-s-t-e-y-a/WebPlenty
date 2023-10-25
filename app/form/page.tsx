@@ -1,5 +1,4 @@
-"use client";
-
+'use client'
 import React, { useEffect } from "react";
 import Image from "next/image";
 import modiyogi from "../../images/modiyogi.png";
@@ -10,24 +9,22 @@ import { Sidebar } from "../components/sidebar";
 import KarykartaFormData from "./KarykartaForm";
 import { useRouter } from "next/navigation";
 
-function page() {
-  // const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+function Page() {
+  const router = useRouter();
 
-  const toggleMenu = () => {
-    // setIsMenuOpen(!isMenuOpen)
-  };
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+
+    if (typeof window !== "undefined" && !token) {
+      router.push("/login");
+    }
+  }, []);
 
   const handleFormSubmit = (formData: any) => {
     // Handle the form submission logic here
     console.log(formData);
   };
-  const router = useRouter();
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (!token) {
-      router.push("/login");
-    }
-  }, []);
+
   return (
     <div>
       <div className="w-[100vw] fixed z-10">
@@ -44,13 +41,11 @@ function page() {
       >
         <div className="center max-w-7xl  py-12 md:py-24">
           <div className="grid items-center justify-items-center gap-x-4 gap-y-10 lg:grid-cols-2">
-            {/* contact from */}
             <div className="flex items-center justify-center">
               <div className="px-2 md:px-12">
                 <p className="text-2xl mt-2 font-bold text-gray-900 md:text-4xl">
                   कार्यकर्त्ता प्रपत्र
                 </p>
-
                 <KarykartaForm onSubmit={handleFormSubmit}></KarykartaForm>
               </div>
             </div>
@@ -62,11 +57,9 @@ function page() {
           </div>
         </div>
       </div>
-      {/* Address */}
-
       <hr className="mt-6" />
     </div>
   );
 }
 
-export default page;
+export default Page;

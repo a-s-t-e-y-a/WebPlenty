@@ -9,7 +9,7 @@ import api from "../pages/api";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -101,7 +101,7 @@ export default function Page() {
                 </tr>
               </thead>
               <tbody>
-                {data.map((info, index) => (
+                {data.map((info : any, index : any) => (
                   <tr
                     key={info.id}
                     className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"

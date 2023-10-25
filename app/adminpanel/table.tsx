@@ -6,7 +6,7 @@ import { api } from "../pages/api";
 
 export function Table() {
   const [data, setData] = useState([]);
-  const [error, setError] = useState(null); // Changed to null to represent no error
+  const [error, setError] = useState<any>(null); // Changed to null to represent no error
   const [loading, setLoading] = useState(true);
 
   async function fetchData() {
@@ -14,7 +14,7 @@ export function Table() {
       const response = await api.get("/user");
       setData(response.data.data);
       setLoading(false);
-    } catch (error) {
+    } catch (error:any) {
       setError(error);
     }
   }
@@ -27,7 +27,7 @@ export function Table() {
 
   if (loading) return <div>Loading....</div>;
 
-  function del(id) {
+  function del(id: any) {
     if (window.confirm("क्या आप एडमिन को हटाना चाहते हैं?")) {
       api
         .delete(`user/${id}`)
@@ -77,7 +77,7 @@ export function Table() {
             </tr>
           </thead>
           <tbody>
-            {data.map((info, index) => (
+            {data&&data.map((info:any , index:any) => (
               <tr
                 key={info.id}
                 className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"

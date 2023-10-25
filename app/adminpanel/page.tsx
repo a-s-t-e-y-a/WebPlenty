@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import { useEffect, useState } from "react";
 import { NavbarLogout } from "../components/navbarlogout";
 import { Sidebar } from "../components/sidebar";
@@ -6,23 +6,29 @@ import { Table } from "./table";
 import { api } from "../pages/api";
 import { useRouter } from "next/navigation";
 
-function Page() {
-  const [token , setToken] = useState(true)
+export default function Page() {
+  const [token, setToken] = useState(false);
   const router = useRouter();
+
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (!token) {
-      router.push("/login");
-    }else{
-      setToken(false)
+    // Check if the code is running in the browser environment
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        router.push("/login");
+      } else {
+        setToken(true);
+      }
     }
   }, []);
-   if(token){
+
+  // Check if the token is set and render content accordingly
+  if (!token) {
     return (
-    <div>
-        authenticating
-    </div>
-    )
+      <div>
+        Authenticating...
+      </div>
+    );
   }
 
   return (
@@ -45,4 +51,3 @@ function Page() {
     </>
   );
 }
-export default Page;

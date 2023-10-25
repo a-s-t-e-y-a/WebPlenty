@@ -28,10 +28,10 @@ export function Table() {
 
   if (loading) return <div>Loading....</div>;
 
-  function del(id) {
+  function del(id: number) {
     if (window.confirm("क्या आप एडमिन को हटाना चाहते हैं?")) {
       api
-        .delete(`user/${id}`)
+        .delete(`village/${id}`)
         .then((response) => {
           toast(response.data.message, {
             icon: "👏",
@@ -46,6 +46,9 @@ export function Table() {
         .catch((error) => {
           console.error(error);
         });
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
     }
   }
 

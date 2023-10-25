@@ -13,7 +13,7 @@ interface IFormInput {
 }
 
 export default function Page() {
-  const [info, setInfo] = useState<KarykartaData>();
+  const [info, setInfo] = useState();
   const [load, setLoad] = useState(true);
   const searchParams = useSearchParams();
   useEffect(() => {

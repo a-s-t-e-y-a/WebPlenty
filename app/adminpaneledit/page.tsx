@@ -12,7 +12,7 @@ import { useSearchParams } from "next/navigation";
 import {useRouter} from "next/navigation";
 
 export default function Page() {
-  const [info, setInfo] = useState<UserData>();
+  const [info, setInfo] = useState<any>();
   const [load, setLoad] = useState(true);
   const router = useRouter();
   const searchParams = useSearchParams();
