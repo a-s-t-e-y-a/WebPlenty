@@ -153,12 +153,18 @@ export default function Page() {
             <form // onSubmit={handleSubmit(onSubmit)}
             className="w-[300px] mx-auto mt-8 p-4 bg-gray-300 rounded-md">
               <label className="block mb-2 font-bold text-gray-700">
-                Select Sanyojak
+                Select 
               </label>
               <select // {...register("religion", { required: true })}
               className="w-full p-2 mb-4 border rounded-md"// defaultValue={info ? info.religion : ""}
               >
-                <option value="hindu">abc</option>
+                <option value="Sanyojak">Sanyojak</option>
+                <option value="">efg</option>
+              </select>
+              <select // {...register("religion", { required: true })}
+              className="w-full p-2 mb-4 border rounded-md"// defaultValue={info ? info.religion : ""}
+              >
+                <option value="prabhari">prabhari</option>
                 <option value="muslim">efg</option>
               </select>
 
@@ -170,26 +176,7 @@ export default function Page() {
               </button>
               <Toaster />
             </form>
-            <form // onSubmit={handleSubmit(onSubmit)}
-            className="w-[300px] mx-auto mt-8 p-10  bg-gray-300 rounded-md">
-              <label className="block mb-2 font-bold text-gray-700">
-                Select prabhari
-              </label>
-              <select // {...register("religion", { required: true })}
-              className="w-full p-2 mb-4 border rounded-md"// defaultValue={info ? info.religion : ""}
-              >
-                <option value="hindu">abc</option>
-                <option value="muslim">efg</option>
-              </select>
-
-              <button
-                type="submit"
-                className="mt-4 p-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
-              >
-                Submit
-              </button>
-              <Toaster />
-            </form>
+           
           </div>:<div></div>}
         </div>
       </div>

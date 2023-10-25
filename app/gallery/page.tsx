@@ -7,6 +7,7 @@ import { NavbarLogout } from "../components/navbarlogout";
 import { useState, useEffect } from "react";
 import api from "../pages/api";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function Page() {
   const [data, setData] = useState({});
@@ -69,14 +70,14 @@ export default function Page() {
 
         <div className="w-full">
           <div className="flex justify-center">
-            <h1 className="text-2xl font-extrabold mt-10">Blog List</h1>
+            <h1 className="text-2xl font-extrabold mt-10">Gallery</h1>
           </div>
           <button className="px-4 py-2 border-2 mb-5 mx-2 rounded-lg border-gray-400">
           <Link
             className="w-full h-full text-black transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
-            href="../blogform"
+            href="../galleryupload"
           >
-            Add New Blog
+            Add New Image
           </Link>
         </button>
 
@@ -89,19 +90,20 @@ export default function Page() {
                   </th>
 
                   <th scope="col" className="px-6 py-3">
-                    Tittle
+                    Name
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Preview
                   </th>
 
-                  <th scope="col" className="px-6 py-3">
-                    Action
-                  </th>
+                 
                   <th scope="col" className="px-6 py-3">
                     Delete
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {data.map((info, index) => (
+                {data.map((info : any , index : number) => (
                   <tr
                     key={info.id}
                     className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
@@ -113,20 +115,11 @@ export default function Page() {
                       {index + 1}
                     </th>
                     <td className="px-6 py-4">{info.title}</td>
-
                     <td className="px-6 py-4">
-                      <Link
-                        href={{
-                          pathname: "../blogformedit",
-                          query: {
-                            data: JSON.stringify(info),
-                          },
-                        }}
-                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                      >
-                        Update
-                      </Link>
+                        {/* <Image src={item.images}></Image> */}
                     </td>
+
+                    
                     <td className="px-6 py-4">
                       <button
                         onClick={() => onClickDelete(info.id)}
