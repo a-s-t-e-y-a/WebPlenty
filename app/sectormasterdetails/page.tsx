@@ -48,6 +48,10 @@ export default function Page() {
       .catch(function (error) {
         toast.error(error.response.data.message);
       });
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+
   };
 
   useEffect(() => {
