@@ -6,12 +6,13 @@ import toast, { Toaster } from "react-hot-toast";
 import { NavbarLogout } from "../components/navbarlogout";
 import { useState, useEffect } from "react";
 import api from "../pages/api";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const [data, setData] = useState({});
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
-
+  const router = useRouter();
   async function fetchData() {
     await api
       .get("/blog")
@@ -24,6 +25,10 @@ export default function Page() {
       });
   }
   useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      router.push("/login");
+    }
     fetchData();
   }, []);
   function onClickDelete(id: number) {
@@ -79,7 +84,6 @@ export default function Page() {
                     Tittle
                   </th>
 
-
                   <th scope="col" className="px-6 py-3">
                     Action
                   </th>
@@ -90,40 +94,40 @@ export default function Page() {
               </thead>
               <tbody>
                 {data.map((info, index) => (
-                <tr
-                  key={info.id}
-                  className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
-                >
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  <tr
+                    key={info.id}
+                    className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
                   >
-                    {index + 1}
-                  </th>
-                  <td className="px-6 py-4">{info.title}</td>
-                  
-                  <td className="px-6 py-4">
-                    <Link
-                      href={{
-                        pathname: "../blogformedit",
-                        query: {
-                          data: JSON.stringify(info),
-                        },
-                      }}
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     >
-                      Update
-                    </Link>
-                  </td>
-                  <td className="px-6 py-4">
-                    <button
-                      onClick={() => onClickDelete(info.id)}
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
+                      {index + 1}
+                    </th>
+                    <td className="px-6 py-4">{info.title}</td>
+
+                    <td className="px-6 py-4">
+                      <Link
+                        href={{
+                          pathname: "../blogformedit",
+                          query: {
+                            data: JSON.stringify(info),
+                          },
+                        }}
+                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      >
+                        Update
+                      </Link>
+                    </td>
+                    <td className="px-6 py-4">
+                      <button
+                        onClick={() => onClickDelete(info.id)}
+                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
                 ))}
               </tbody>
             </table>

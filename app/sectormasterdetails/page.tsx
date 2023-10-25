@@ -4,26 +4,67 @@ import { Navbar } from "../components/navbar";
 import { Sidebar } from "../components/sidebar";
 import toast, { Toaster } from "react-hot-toast";
 import { NavbarLogout } from "../components/navbarlogout";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import api from "../pages/api";
+import { useSearchParams } from "next/navigation";
 
 export default function Page() {
-  const [data, setData] = useState([]); // Replace with your actual data
-
+  const [load, setLoad] = useState(true);
+  const [data, setData] = useState();
+  const [error, setError] = useState(false);
+  const [karyakarta , setKarykartaData] = useState()
+  const searchParams = useSearchParams();
   useEffect(() => {
-    // Fetch your data here
-    const fetchData = async () => {
-      try {
-        const response = await api.get("/your-api-endpoint"); // Replace with your API endpoint
-        setData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+    const dataParam = searchParams.get("data");
+    if (dataParam) {
+      console.log(dataParam);
+      api
+        .get(`/sector/${JSON.parse(dataParam)}`)
+        .then((info) => {
+          console.log(info)
+          api.get(`/karykarta?mundalId=${info.data.data.mundalId}&&role=karyakarta`)
+            .then((i_) => {
+              console.log(i_)
+              setKarykartaData(i_.data.data);
+            }).catch((error) => {
+              setError(error);
+            });
+          setLoad(false);
+          setData(info.data.data);
+        })
+        .catch((error) => {
+          setError(error);
+        });
+    }
+  }, [searchParams]);
 
-    fetchData();
-  }, []);
-
+  function onClickDelete(id: number) {
+    const del = api
+      .put(`karykarta/${id}`, {
+        role: "karyakarta",
+        sectorId: null,
+      })
+      .then((response) => {
+        toast(response.data.message, {
+          icon: "👏",
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      })
+      .catch(function (error) {
+        toast.error(error.response.data.message);
+        console.log(error.response.data.message);
+      });
+    console.log(del);
+  }
+  if (load) return <div>Loading ...</div>;
+  if (error) return <div>Error</div>;
   return (
     <>
       <div className="w-[100vw] z-10">
@@ -64,37 +105,42 @@ export default function Page() {
                 </tr>
               </thead>
               <tbody>
-                {/* {data.map((info, index) => ( */}
-                <tr
-                  // key={info.id}
-                  className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
-                >
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                {data.karykarta.map((info, index) => (
+                  <tr
+                    key={info.id}
+                    className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
                   >
-                    {/* {index + 1} */}
-                  </th>
-                  <td className="px-6 py-4"></td>
-                  <td className="px-6 py-4"></td>
-                  <td className="px-6 py-4">
-                    <Link
-                      href="../mundalmasterformedit"
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     >
-                      Update
-                    </Link>
-                  </td>
-                  <td className="px-6 py-4">
-                    <button
-                      // onClick={() => del(info.id)}
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-                {/* ))} */}
+                      {index + 1}
+                    </th>
+                    <td className="px-6 py-4">{info.name}</td>
+                    <td className="px-6 py-4">{info.role}</td>
+                    <td className="px-6 py-4">
+                      <Link
+                        href={{
+                          pathname: "../karykartaformedit",
+                          query: {
+                            data: JSON.stringify(info),
+                          },
+                        }}
+                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      >
+                        Update
+                      </Link>
+                    </td>
+                    <td className="px-6 py-4">
+                      <button
+                        onClick={() => onClickDelete(info.id)}
+                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

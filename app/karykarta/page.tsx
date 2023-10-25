@@ -82,7 +82,7 @@ const Page = () => {
   if(token){
     return (
     <div>
-        authenticatiing
+        authenticating
     </div>
     )
   }
