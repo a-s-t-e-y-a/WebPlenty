@@ -26,7 +26,7 @@ export function Gallery() {
     setEnlargedIndex(index === enlargedIndex ? -1 : index);
   };
   return (<>
-  <h1 className="text-3xl text-center font-bold">Gallery</h1>
+  <h1 className="text-3xl text-center font-bold" id="gallery">Gallery</h1>
     <div className="mx-auto grid w-full max-w-7xl items-center space-y-4 px-2 py-10 md:grid-cols-2 md:gap-6 md:space-y-0 lg:grid-cols-4">
       {photos.map((pic, index) => (
         <Image

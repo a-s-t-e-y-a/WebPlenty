@@ -178,6 +178,7 @@ export function NavbarLogout() {
           </div>
         )}
       </div>
+      <hr></hr>
     </div>
   );
 }

@@ -10,26 +10,23 @@ import Image from 'next/image'
 const menuItems = [
   {
     name: 'Home',
-    href: '#',
+    href: '../',
   },
   {
-    name: 'बाँसडीह',
-    href: '#',
+    name: 'Gallery',
+    href: '#gallery',
   },
   {
-    name: 'बेरुआरबारी',
-    href: '#',
+    name: 'Blogs',
+    href: '#blogs',
   },
   {
-    name: 'मनियर',
-    href: '#',
-  },{
-    name: 'सहतवार',
-    href: '#',
+    name: 'Maps',
+    href: '#map',
   },
   {
-    name: 'रेवती',
-    href: '#',
+    name: 'About Us',
+    href: 'about',
   },
 ]
 

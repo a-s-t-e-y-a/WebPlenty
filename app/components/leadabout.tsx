@@ -4,7 +4,7 @@ import Image from 'next/image'
 // import leaderimage from '../../images/ketaki-singh.jpg'
 export const Leadabout = () => {
   return (
-    <section className="overflow-hidden">
+    <section className="overflow-hidden" id='about'>
       <div className="mx-auto max-w-5xl px-5 py-24">
         <div className="mx-auto flex flex-wrap items-center lg:w-4/5">
           <Image

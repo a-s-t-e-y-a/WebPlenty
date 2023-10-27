@@ -291,9 +291,9 @@ const Page = () => {
               </form>
               <div className="w-full">
                 <div className="">
-                  <h1 className="text-2xl font-extrabold mt-10">
-                    Mundal Master
-                  </h1>
+                {/* <h1 className="text-2xl font-extrabold mt-10">
+                  Mundal Master
+                </h1> */}
                   <TableData data={madal} url={url} />
                 </div>  
               </div>
