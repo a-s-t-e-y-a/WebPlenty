@@ -35,7 +35,7 @@ export function Writting() {
        
           {data.map((info, index) => (
             <>
-             <div className="relative aspect-[9/16]  w-auto rounded-md    md:h-[400px]">
+             <div className="relative aspect-[1/1]  w-auto rounded-md    md:h-[400px]">
               <div className="relative aspect-[16/9]  w-auto rounded-md md:aspect-auto md:h-[400px]">
                 <Image
                   src={`${info.image}`}

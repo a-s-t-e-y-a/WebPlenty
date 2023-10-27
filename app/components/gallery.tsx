@@ -34,7 +34,7 @@ export function Gallery() {
           src={pic.src}
           // height={600}
           // width={400}
-          className="relative    rounded-md md:aspect-auto md:w-[400px] md:h-[200px] object-cover"
+          className="relative    rounded-md md:aspect-auto md:w-[400px] md:h-[400px] object-cover"
           alt={pic.alt}
           onClick={() => toggleImageSize(index)}
           style={{
