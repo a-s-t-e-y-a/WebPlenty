@@ -44,7 +44,7 @@ function Page() {
     async function fetchData() {
       try {
         setLoading(true);
-        const response = await api.get("/sector");
+        const response = await api.get("/village");
         setData(response.data.data);
         setLoading(false);
       } catch (err:any) {
@@ -135,7 +135,7 @@ function Page() {
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     >
                       <option value="" disabled>
-                        Select a sector
+                        Select a Village
                       </option>
                       {data.map((info: any) => (
                         <option key={info.id} value={info.id}>
