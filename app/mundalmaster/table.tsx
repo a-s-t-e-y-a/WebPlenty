@@ -69,18 +69,18 @@ console.log(data)
   return (
     <>
       <div className="flex justify-center">
-        {/* <button
-          onClick={() => download("pdf")}
-          className="px-4 py-2 border-2 mb-5 mx-2 rounded-lg border-gray-400 text-sm"
-        >
-          PDF
-        </button>
-        <button
-          onClick={() => download("Excel")}
-          className="px-4 py-2 border-2 mb-5 mx-2 rounded-lg border-gray-400 text-sm"
-        >
-          Excel
-        </button> */}
+      <button
+            onClick={() => download("pdf")}
+            className="px-4 py-2 border-2 mb-5 mx-2 rounded-lg border-gray-400 text-sm"
+          >
+            PDF
+          </button>
+          <button
+            onClick={() => download("Excel")}
+            className="px-4 py-2 border-2 mb-5 mx-2 rounded-lg border-gray-400 text-sm"
+          >
+            Excel
+          </button>
         <button className="px-4 py-2 border-2 mb-5 mx-2 rounded-lg border-gray-400">
           <Link
             className="w-full h-full text-black transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
