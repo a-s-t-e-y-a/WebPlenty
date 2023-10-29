@@ -26,7 +26,7 @@ const menuItems = [
   },
   {
     name: 'About Us',
-    href: 'about',
+    href: '#',
   },
 ]
 
