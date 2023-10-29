@@ -31,15 +31,12 @@ export function Table({ data, url }: any) {
   }
   function download(type: string) {
     console.log(type);
-    const apiUrl = url === "/mundal"
-      ? `${url}?download=true&&type=${type}`
-      : `${url}&&download=true&&type=${type}`;
-
+    const apiUrl = `mundal?download=true&type=${type}`
     api
       .get(apiUrl, { responseType: "blob" })
       .then((response) => {
         const disposition = response.headers["content-disposition"];
-        let filename = `bjp__karykarta__${uuidv4()}`;
+        let filename = `bjp__mandal__${uuidv4()}`;
 
         if (disposition && disposition.indexOf("attachment") !== -1) {
           const matches = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/.exec(
@@ -65,7 +62,7 @@ export function Table({ data, url }: any) {
         console.error(error);
       });
   }
-
+console.log(data)
   return (
     <>
       <div className="flex justify-center">
