@@ -10,6 +10,7 @@ import { useForm, Controller } from "react-hook-form";
 import { api } from "../pages/api";
 import { useSearchParams } from "next/navigation";
 import {useRouter} from "next/navigation";
+import Spinner from "../components/spinner";
 
 export default function Page() {
   const [info, setInfo] = useState<any>();
@@ -56,7 +57,7 @@ export default function Page() {
   if (load) {
     return (
       <>
-        <div>Loading</div>
+        <div><Spinner></Spinner></div>
       </>
     );
   }

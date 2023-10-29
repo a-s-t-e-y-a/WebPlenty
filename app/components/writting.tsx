@@ -33,7 +33,7 @@ export function Writting() {
     <>
       <div className="mx-auto  w-full max-w-7xl items-center space-y-4 px-2 py-10 md:space-y-0  flex flex-wrap gap-5">
        
-          {data.map((info, index) => (
+          {data.map((info:any, index:any) => (
             <>
              <div className="relative aspect-[1/1]  w-auto rounded-md    md:h-[400px]">
               <div className="relative aspect-[16/9]  w-auto rounded-md md:aspect-auto md:h-[400px]">

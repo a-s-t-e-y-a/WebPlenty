@@ -7,6 +7,7 @@ import { NavbarLogout } from "../components/navbarlogout";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import api from "../pages/api";
+import Spinner from "../components/spinner";
 export default function Page() {
   // Replace with your actual data
   const [load, setLoad] = useState(true);
@@ -28,7 +29,7 @@ export default function Page() {
         });
     }
   }, [searchParams]);
-  if (load) return <div>Loading ...</div>;
+  if (load) return <div><Spinner></Spinner></div>;
   if (error) return <div>Error</div>;
   function onClickDelete(id: number) {
     const del = api

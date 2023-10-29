@@ -4,6 +4,7 @@ import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import { api } from "../pages/api";
 import ClipLoader from "react-spinners/ClipLoader";
+import Spinner from "../components/spinner";
 export function Table() {
   const [data, setData] = useState<Author []>();
   const [error, setError] = useState(null); // Changed to null to represent no error
@@ -26,7 +27,7 @@ export function Table() {
 
   if (error) return <div>Error: {error.message}</div>;
 
-  if (loading) return <div>Loding....</div>;
+  if (loading) return <div><Spinner></Spinner></div>;
 
   function del(id: number) {
     if (window.confirm("क्या आप एडमिन को हटाना चाहते हैं?")) {
@@ -116,7 +117,7 @@ export function Table() {
                   </button>
                 </td>
               </tr>
-            )):(<div>Loading ...</div>)}
+            )):(<div><Spinner></Spinner></div>)}
           </tbody>
         </table>
         <Toaster />
