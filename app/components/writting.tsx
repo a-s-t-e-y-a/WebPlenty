@@ -4,6 +4,7 @@ import Image from "next/image";
 import api from "../pages/api";
 import image7 from "../../images/7.jpg";
 import Link from "next/link";
+import Oops from "./error";
 
 export function Writting() {
   const [data, setData] = useState({});
@@ -26,7 +27,7 @@ export function Writting() {
   }, []);
 
   console.log(data);
-  if (error) return <div>error..... !!!!!</div>;
+  if (error) return <div><Oops></Oops></div>;
   if (loading) return <div>loading....</div>;
 
   return (

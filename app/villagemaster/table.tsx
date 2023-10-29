@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { api } from "../pages/api";
 import ClipLoader from "react-spinners/ClipLoader";
 import Spinner from "../components/spinner";
+import Oops from "../components/error";
 export function Table() {
   const [data, setData] = useState<Author []>();
   const [error, setError] = useState(null); // Changed to null to represent no error
@@ -25,7 +26,7 @@ export function Table() {
     fetchData();
   }, []);
 
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <div><Oops></Oops></div>;
 
   if (loading) return <div><Spinner></Spinner></div>;
 

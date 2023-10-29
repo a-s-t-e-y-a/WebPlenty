@@ -10,6 +10,7 @@ import useSWR from "swr";
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Spinner from "../components/spinner";
+import Oops from "../components/error";
 
 const Page = () => {
   const [madal, setData] = useState();
@@ -84,24 +85,7 @@ const Page = () => {
 
   if (error)
     return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-      >
-        <div className="text-center">
-          <p className="text-base font-semibold text-black">404</p>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight text-black sm:text-5xl">
-            Data cannot load !!!!
-          </h1>
-          <p className="mt-4 text-base leading-7 text-gray-600">
-            Sorry, we could not fetch data at this moment
-          </p>
-        </div>
-      </div>
+      <Oops></Oops>
     );
   if (isLoading)
     return (

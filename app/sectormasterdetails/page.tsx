@@ -9,6 +9,7 @@ import api from "../pages/api";
 import { useSearchParams } from "next/navigation";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import Spinner from "../components/spinner";
+import Oops from "../components/error";
 
 interface Karyakarta {
   id: string;
@@ -107,7 +108,7 @@ export default function Page() {
     console.log(del);
   }
   if (load) return <div><Spinner/></div>;
-  if (error) return <div>Error</div>;
+  if (error) return <div><Oops></Oops></div>;
   return (
     <>
       <div className="w-[100vw] z-10">

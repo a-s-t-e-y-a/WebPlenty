@@ -6,6 +6,7 @@ import { Table } from "./table";
 import { api } from "../pages/api";
 import { useRouter } from "next/navigation";
 import Spinner from "../components/spinner";
+import Oops from "../components/error";
 
 function Page() {
   const [data, setData] = useState({});
@@ -32,7 +33,7 @@ function Page() {
     fetchData();
   }, []);
   console.log(data);
-  if (error) return <div>error..... !!!!!</div>;
+  if (error) return <div><Oops></Oops></div>;
   if (loading) return <div><Spinner></Spinner></div>;
   return (
     <>

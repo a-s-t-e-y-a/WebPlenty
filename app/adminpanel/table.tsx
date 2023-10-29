@@ -4,6 +4,7 @@ import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import { api } from "../pages/api";
 import Spinner from "../components/spinner";
+import Oops from "../components/error";
 
 export function Table() {
   const [data, setData] = useState([]);
@@ -24,7 +25,7 @@ export function Table() {
     fetchData();
   }, []);
 
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <div><Oops></Oops></div>;
 
   if (loading) return <div><Spinner></Spinner></div>;
 

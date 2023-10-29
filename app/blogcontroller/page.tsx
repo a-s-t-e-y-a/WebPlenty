@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import api from "../pages/api";
 import { useRouter } from "next/navigation";
 import Spinner from "../components/spinner";
+import Oops from "../components/error";
 
 export default function Page() {
   const [data, setData] = useState([]);
@@ -55,7 +56,7 @@ export default function Page() {
     console.log(del);
   }
   console.log(data);
-  if (error) return <div>error..... !!!!!</div>;
+  if (error) return <div><Oops></Oops></div>;
   if (loading) return <div><Spinner></Spinner></div>;
 
   return (

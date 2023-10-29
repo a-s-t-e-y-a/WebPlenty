@@ -4,6 +4,7 @@ import useSWR from "swr";
 import toast, { Toaster } from "react-hot-toast";
 import { useState } from "react";
 import Spinner from "../components/spinner";
+import Oops from "../components/error";
 interface KarykartaFormProps {
   onSubmit: (formData: KarykartaFormData) => void;
 }
@@ -88,7 +89,7 @@ const KarykartaForm: React.FC<KarykartaFormProps> = () => {
   }
   const { data, error, isLoading } = useSWR(`${baseURL}/mundal`, fetcher);
 
-  if (error) return <div>failed to load</div>;
+  if (error) return <div><Oops></Oops></div>;
   if (isLoading) {
     return (
       <Spinner></Spinner>
