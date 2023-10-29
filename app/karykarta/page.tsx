@@ -10,15 +10,13 @@ import useSWR from "swr";
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
-
-
 const Page = () => {
   const [madal, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [infoError, setInfoError] = useState(null);
   const [url, seturl] = useState("/karykarta");
-  const [token, setToken] = useState(true)
-  const router = useRouter()
+  const [token, setToken] = useState(true);
+  const router = useRouter();
   const fetchData = async () => {
     try {
       const response = await api.get(url);
@@ -35,11 +33,11 @@ const Page = () => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem('accessToken')
-    if (!token){
-      router.push('/login')
-    }else{
-      setToken(false)
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      router.push("/login");
+    } else {
+      setToken(false);
     }
     fetchData();
   }, [url]);
@@ -79,14 +77,10 @@ const Page = () => {
     // Use finalURL as needed
     console.log(finalURL);
   };
-  if(token){
-    return (
-    <div>
-        authenticating
-    </div>
-    )
+  if (token) {
+    return <div>authenticating</div>;
   }
-    
+
   if (error)
     return (
       <div
@@ -173,9 +167,7 @@ const Page = () => {
                   कार्यकर्ता विवरण
                 </h1>
               </div>
-              {
-
-              }
+              {}
               <form
                 className="w-full text-center mt-12"
                 onSubmit={handleSubmit(onSubmit)}
@@ -271,14 +263,13 @@ const Page = () => {
                       {...field}
                       className="w-auto mx-5 my-2 bg-black text-white p-2 mb-4 border rounded-lg"
                     >
-                      <option value = "None">Select role</option>
+                      <option value="None">Select role</option>
                       <option value="karyakarta">karyakarta</option>
                       <option value="adhyaksha">adhyaksha</option>
                       <option value="koshadhyaksha">koshadhyaksha</option>
                       <option value="mahamantri">mahamantri</option>
                       <option value="mantri">mantri</option>
                       <option value="upaadhyaksha">upaadhyaksha</option>
-                     
                     </select>
                   )}
                 />
@@ -291,11 +282,11 @@ const Page = () => {
               </form>
               <div className="w-full">
                 <div className="">
-                {/* <h1 className="text-2xl font-extrabold mt-10">
+                  {/* <h1 className="text-2xl font-extrabold mt-10">
                   Mundal Master
                 </h1> */}
                   <TableData data={madal} url={url} />
-                </div>  
+                </div>
               </div>
             </>
           )}
