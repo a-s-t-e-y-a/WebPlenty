@@ -65,7 +65,7 @@ export function Table({ data, url }: any) {
         console.error(error);
       });
   }
-
+console.log(data)
   return (
     <>
       <div className="flex justify-center">
