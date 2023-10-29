@@ -81,7 +81,7 @@ export default function Page() {
         .then((info) => {
           console.log(info);
           api.get(
-            `/karykarta?mundalId=${info.data.data.sector.mundalId}&&role=karyakarta`,
+            `/karykarta?mundalId=${info.data.data.mundalId}&&role=karyakarta`,
           )
             .then((i_) => {
               console.log(i_);

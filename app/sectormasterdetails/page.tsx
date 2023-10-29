@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import api from "../pages/api";
 import { useSearchParams } from "next/navigation";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import Spinner from "../components/spinner";
 
 interface Karyakarta {
   id: string;
@@ -20,7 +21,7 @@ interface FormValues {
 }
 export default function Page() {
   const [load, setLoad] = useState(true);
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
   const [error, setError] = useState(false);
   const [sectorId, setSectorId] = useState();
   const [karyakarta, setKarykartaData] = useState();
@@ -48,10 +49,9 @@ export default function Page() {
       .catch(function (error) {
         toast.error(error.response.data.message);
       });
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
-
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   };
 
   useEffect(() => {
@@ -62,18 +62,18 @@ export default function Page() {
       api
         .get(`/sector/${JSON.parse(dataParam)}`)
         .then((info) => {
-          console.log(info);
+          console.log(info.data.data);
           api.get(
             `/karykarta?mundalId=${info.data.data.mundalId}&&role=karyakarta`,
           )
             .then((i_) => {
-              console.log(i_);
+              console.log(i_.data.data.length);
               setKarykartaData(i_.data.data);
             }).catch((error) => {
               setError(error);
             });
           setLoad(false);
-          setData(info.data.data);
+          setData(info.data.data[0]);
         })
         .catch((error) => {
           setError(error);
@@ -106,7 +106,7 @@ export default function Page() {
       });
     console.log(del);
   }
-  if (load) return <div>Loading ...</div>;
+  if (load) return <div><Spinner/></div>;
   if (error) return <div>Error</div>;
   return (
     <>
@@ -148,42 +148,43 @@ export default function Page() {
                 </tr>
               </thead>
               <tbody>
-                {data.karykarta.map((info, index) => (
-                  <tr
-                    key={info.id}
-                    className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
-                  >
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                {data.karykarta && data.karykarta.length > 0 &&
+                  data.karykarta.map((info: any, index: any) => (
+                    <tr
+                      key={info.id}
+                      className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
                     >
-                      {index + 1}
-                    </th>
-                    <td className="px-6 py-4">{info.name}</td>
-                    <td className="px-6 py-4">{info.role}</td>
-                    <td className="px-6 py-4">
-                      <Link
-                        href={{
-                          pathname: "../karykartaformedit",
-                          query: {
-                            data: JSON.stringify(info),
-                          },
-                        }}
-                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      <th
+                        scope="row"
+                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                       >
-                        Update
-                      </Link>
-                    </td>
-                    <td className="px-6 py-4">
-                      <button
-                        onClick={() => onClickDelete(info.id)}
-                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+                        {index + 1}
+                      </th>
+                      <td className="px-6 py-4">{info.name}</td>
+                      <td className="px-6 py-4">{info.role}</td>
+                      <td className="px-6 py-4">
+                        <Link
+                          href={{
+                            pathname: "../karykartaformedit",
+                            query: {
+                              data: JSON.stringify(info),
+                            },
+                          }}
+                          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                        >
+                          Update
+                        </Link>
+                      </td>
+                      <td className="px-6 py-4">
+                        <button
+                          onClick={() => onClickDelete(info.id)}
+                          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>
@@ -191,7 +192,7 @@ export default function Page() {
           <hr className="my-10" />
 
           <div className="flex flex-wrap">
-            {data && (
+            {data.karykarta && data.karykarta.length > 0 && (
                 data.karykarta.length === 0 ||
                 data.karykarta.every((karykarta) =>
                   karykarta.role !== "shaktikendraSanyojak"
@@ -234,7 +235,7 @@ export default function Page() {
                 </form>
               )
               : null}
-            {data && (
+            {data.karykarta && data.karykarta.length > 0  && (
                 data.karykarta.length === 0 ||
                 data.karykarta.every((karykarta) =>
                   karykarta.role !== "shaktikendraprabhari"

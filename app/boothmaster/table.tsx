@@ -89,10 +89,10 @@ export function Table({ data }: any) {
                 </th>
                 <td className="px-6 py-4">{info.name}</td>
                 <td className="px-6 py-4">
-                  {info.sectorId !== null ? info.sectorId : "None"}
+                  {info.villageId !== null ? info.villageId : "None"}
                 </td>
                 <td className="px-6 py-4">
-                  {info.sectorId !== null ? info.sectorId : "None"}
+                  {info.village.name !== null ? info.village.name : "None"}
                 </td>
                 <td className="px-6 py-4">
                   {info.karykarta !== null
