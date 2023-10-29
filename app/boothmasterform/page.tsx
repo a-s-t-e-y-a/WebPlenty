@@ -59,13 +59,15 @@ function Page() {
   useEffect(() => {
     async function fetchData(id: any) {
       api
-        .get(`/sector/${id}`)
+        .get(`/village/${id}`)
         .then((response) => {
+          console.log("id",response)
           api
             .get(
-              `/karykarta?mundalId=${response.data.data.mundalId}&&role=karyakarta`
+              `/karykarta?mundalId=${response.data.data[0].mundalId}&&role=karyakarta`
             )
             .then((response) => {
+              console.log(response)
               setdataForKarykarta(response.data.data);
               setsecondLoader(false);
               setLoading(false);
@@ -123,7 +125,7 @@ function Page() {
                   )}
                 />
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                  Sector Name
+                  Village Name
                 </label>
                 <Controller
                   name="sectorId"
