@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import api from "../pages/api";
 import { useSearchParams } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
+import Spinner from "../components/spinner";
 
 export default function Page() {
   const [data, setData] = useState([]); // Replace with your actual data
@@ -97,7 +98,7 @@ export default function Page() {
         });
     }
   }, [searchParams]);
-  if (load) return <div>Loading ...</div>;
+  if (load) return <div><Spinner></Spinner></div>;
   if (error) return <div>Error</div>;
 
   return (

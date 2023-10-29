@@ -6,6 +6,7 @@ import { Sidebar } from "../components/sidebar";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import api from "../pages/api";
+import Spinner from "../components/spinner";
 
 export default function Page() {
   const [info, setInfo] = useState<KarykartaData>();
@@ -45,7 +46,7 @@ export default function Page() {
 
     console.log(data);
   };
-if(load) return <div>Loading ....</div>
+if(load) return <div><Spinner></Spinner></div>
   return (
     <>
       <div className="w-[100vw] z-10">

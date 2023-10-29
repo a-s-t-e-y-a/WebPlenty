@@ -6,6 +6,7 @@ import { useForm, Controller } from "react-hook-form";
 import { api } from "../pages/api";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
+import Spinner from "../components/spinner";
 function Page() {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
@@ -55,7 +56,7 @@ function Page() {
   };
 
   if (error) return <div>Error occurred</div>;
-  if (load) return <div>Loading...</div>;
+  if (load) return <div><Spinner></Spinner></div>;
 
   return (
     <>

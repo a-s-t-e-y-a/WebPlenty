@@ -5,6 +5,7 @@ import { Sidebar } from "../components/sidebar";
 import { Table } from "./table";
 import { api } from "../pages/api";
 import { useRouter } from "next/navigation";
+import Spinner from "../components/spinner";
 
 function Page() {
   const [data, setData] = useState({});
@@ -33,7 +34,7 @@ function Page() {
   }, []);
   console.log(data);
   if (error) return <div>error..... !!!!!</div>;
-  if (loading) return <div>loading....</div>;
+  if (loading) return <div><Spinner></Spinner></div>;
   return (
     <>
       <div className="w-[100vw]  z-10">

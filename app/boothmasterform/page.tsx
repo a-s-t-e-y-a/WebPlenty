@@ -5,6 +5,7 @@ import { Sidebar } from "../components/sidebar";
 import { useForm, Controller } from "react-hook-form";
 import { api } from "../pages/api";
 import toast, { Toaster } from "react-hot-toast";
+import Spinner from "../components/spinner";
 function Page() {
   const { handleSubmit, control, watch } = useForm();
   const selectedSector = watch("sectorId");
@@ -89,7 +90,7 @@ function Page() {
 
   if (secondError) return <div>Error occurred</div>;
   if (error) return <div>Error occurred</div>;
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div><Spinner></Spinner></div>;
   // if ( secondLoader) return <div>LOading ......</div>
 
   return (

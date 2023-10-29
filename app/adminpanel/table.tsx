@@ -3,6 +3,7 @@ import { Pencil, Trash2 } from "lucide-react";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import { api } from "../pages/api";
+import Spinner from "../components/spinner";
 
 export function Table() {
   const [data, setData] = useState([]);
@@ -25,7 +26,7 @@ export function Table() {
 
   if (error) return <div>Error: {error.message}</div>;
 
-  if (loading) return <div>Loading....</div>;
+  if (loading) return <div><Spinner></Spinner></div>;
 
   function del(id: any) {
     if (window.confirm("क्या आप एडमिन को हटाना चाहते हैं?")) {
