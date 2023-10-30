@@ -4,23 +4,20 @@ import { useState } from "react"; // Import useState from React
 
 export default function Page() {
   const { register, handleSubmit } = useForm();
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState(null); // State for selected image
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedImage = event.target.files;
-
-    if (selectedImage && selectedImage.length > 0) {
+  const handleFileChange = (event:any) => {
+    const file = event.target.files[0];
+    if (file) {
       const reader = new FileReader();
-      reader.onload = (e: any) => {
-        setImagePreview(e.target.result as string);
+      reader.onload = (e:any) => {
+        setSelectedImage(e.target.result);
       };
-      reader.readAsDataURL(selectedImage[0]);
-    } else {
-      setImagePreview(null);
+      reader.readAsDataURL(file);
     }
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = (data:any) => {
     // Handle form submission here
     console.log(data);
   };
@@ -30,12 +27,14 @@ export default function Page() {
       <div className="flex justify-center w-full mx-auto sm:max-w-lg">
         <div className="flex flex-col items-center justify-center w-full h-auto my-20 bg-white sm:w-3/4 sm:rounded-lg sm:shadow-xl">
           <div className="mt-10 mb-10 text-center">
-            {imagePreview && (
-              <img
-                src={imagePreview}
-                alt="Image Preview"
-                className="max-h-40 mx-auto mt-4 rounded-md"
-              />
+            {selectedImage && (
+              <div className="mt-4">
+                <img
+                  src={selectedImage}
+                  alt="Selected"
+                  className="w-full h-full rounded-lg"
+                />
+              </div>
             )}
 
             <h2 className="text-2xl font-semibold mb-2">Upload your files</h2>
@@ -49,11 +48,12 @@ export default function Page() {
           >
             <input
               type="file"
-              multiple
-              className="cursor-pointer relative block opacity-0 w-full h-full rounded-md"
-              {...register("image")}
-              onChange={handleImageChange}
+              id="file-upload"
+              {...register("file")}
+              className="hidden"
+              onChange={handleFileChange}
             />
+            <div className="absolute w-full h-full border-solid border-indigo-400  border-2">
             <label
               htmlFor="file-upload"
               className="z-20 flex flex-col-reverse items-center justify-center w-full h-full cursor-pointer"
@@ -71,9 +71,10 @@ export default function Page() {
                 </path>
               </svg>
             </label>
+            </div>
             <button
               type="submit"
-              className="bg-indigo-600 hover-bg-indigo-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-indigo-600 hover-bg-indigo-700 text-white font-bold py-2 px-4 rounded absolute bottom-0"
             >
               Submit
             </button>
