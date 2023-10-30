@@ -18,7 +18,7 @@ export default function Page() {
   const router = useRouter();
   async function fetchData() {
     await api
-      .get("/blog")
+      .get("/gallery")
       .then((info) => {
         setData(info.data.data);
         setLoading(false);
@@ -91,13 +91,7 @@ export default function Page() {
                     Sr.No.
                   </th>
 
-                  <th scope="col" className="px-6 py-3">
-                    Name
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Preview
-                  </th>
-
+                 
                  
                   <th scope="col" className="px-6 py-3">
                     Delete
@@ -116,11 +110,7 @@ export default function Page() {
                     >
                       {index + 1}
                     </th>
-                    <td className="px-6 py-4">{info.title}</td>
-                    <td className="px-6 py-4">
-                        {/* <Image src={item.images}></Image> */}
-                    </td>
-
+                   
                     
                     <td className="px-6 py-4">
                       <button

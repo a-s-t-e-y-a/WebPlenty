@@ -196,21 +196,20 @@ export function Table() {
             </button>
           </form>
         </div>
-         <div>
-              <button
-                onClick={() => download("pdf")}
-                className="px-4 py-2 border-2 mx-2 rounded-lg border-gray-400 text-sm"
-              >
-                PDF
-              </button>
-              <button
-                onClick={() => download("Excel")}
-                className="px-4 py-2 border-2  mx-2 rounded-lg border-gray-400 text-sm"
-              >
-                Excel
-              </button>
-            </div>
-
+        <div>
+          <button
+            onClick={() => download("pdf")}
+            className="px-4 py-2 border-2 mx-2 rounded-lg border-gray-400 text-sm"
+          >
+            PDF
+          </button>
+          <button
+            onClick={() => download("Excel")}
+            className="px-4 py-2 border-2  mx-2 rounded-lg border-gray-400 text-sm"
+          >
+            Excel
+          </button>
+        </div>
       </div>
 
       <div className="flex justify-center">
