@@ -1,26 +1,44 @@
-"use client";
+'use client'
+import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Navbar } from "../components/navbar";
-import { error } from "console";
 import toast from "react-hot-toast";
 import api from "../pages/api";
 
 interface IFormInput {
-  title: string; // Change "String" to "string" for lowercase data type
+  title: string;
   content: string;
-  image: any;
+  image: FileList | null; // Change 'any' to 'FileList'
 }
 
 export default function Page() {
   const { register, handleSubmit } = useForm<IFormInput>();
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
 
-  const onSubmit = (data: any) => {
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedImage = event.target.files;
+
+    if (selectedImage && selectedImage.length > 0) {
+      const reader = new FileReader();
+      reader.onload = (e:any) => {
+        setImagePreview(e.target.result as string);
+      };
+      reader.readAsDataURL(selectedImage[0]);
+    } else {
+      setImagePreview(null);
+    }
+  };
+
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log(data);
     const formData = new FormData();
 
     formData.append("content", data.content);
     formData.append("title", data.title);
-    formData.append("image", data.image[0]);
+    if (data.image) {
+      formData.append("image", data.image[0]);
+    }
+
     return api
       .post("/blog", formData, {
         headers: {
@@ -28,7 +46,7 @@ export default function Page() {
         },
       })
       .then(function (response) {
-        toast(response.data.message, {
+        toast.success(response.data.message, {
           icon: "👏",
           style: {
             borderRadius: "10px",
@@ -45,6 +63,7 @@ export default function Page() {
         toast.error(error.response.data.message);
       });
   };
+
   return (
     <>
       <Navbar></Navbar>
@@ -58,7 +77,9 @@ export default function Page() {
               multiple
               className="cursor-pointer relative block opacity-0 w-full h-full p-20 z-50"
               {...register("image")}
+              onChange={handleImageChange}
             />
+            
             <div className="text-center p-10 absolute top-0 right-0 left-0 m-auto">
               <h4>
                 Drop files anywhere to upload
@@ -69,6 +90,13 @@ export default function Page() {
             </div>
           </div>
         </div>
+        {imagePreview && (
+          <img
+            src={imagePreview}
+            alt="Image Preview"
+            className="max-h-40 mx-auto mt-4"
+          />
+        )}
         <div>
           <input
             type="text"
