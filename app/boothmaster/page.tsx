@@ -159,7 +159,7 @@ function Page() {
                       <option value="None">Select mundal</option>
                       {mundal &&
                         mundal.map((info) => (
-                          <option value={info.id}>{info.name}</option>
+                          <option key={info.id} value={info.id}>{info.name}</option>
                         ))}
                     </select>
                   )}
@@ -176,7 +176,7 @@ function Page() {
                       <option value="None">Select village</option>
                       {village &&
                         village.map((info) => (
-                          <option value={info.id}>{info.name}</option>
+                          <option key={info.id} value={info.id}>{info.name}</option>
                         ))}
                     </select>
                   )}
