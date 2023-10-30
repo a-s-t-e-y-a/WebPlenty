@@ -61,14 +61,15 @@ export function Gallery() {
             src={pic.name}
             height={1200}
             width={800}
+            alt="Gallery"
             onClick={() => toggleImageSize(index)}
             style={{
               cursor: "pointer",
-              transform: enlargedIndex === index ? "scale(2)" : "scale(1)",
+              transform: enlargedIndex === index ? "scale(1.3)" : "scale(1)",
               transition: "transform 0.5s",
               zIndex: enlargedIndex === index ? 1 : "auto",
               position: enlargedIndex === index ? "absolute" : "relative",
-              left: enlargedIndex === index ? "40%" : "auto",
+              left: enlargedIndex === index ? "20%" : "auto",
               border: "4px solid #cfcecc",
             }}
           />

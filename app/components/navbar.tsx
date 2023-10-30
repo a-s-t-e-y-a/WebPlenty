@@ -24,10 +24,7 @@ const menuItems = [
     name: 'Maps',
     href: '#map',
   },
-  {
-    name: 'About Us',
-    href: '#',
-  },
+  
 ]
 
 
