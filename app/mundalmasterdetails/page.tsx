@@ -8,6 +8,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import api from "../pages/api";
 import Spinner from "../components/spinner";
+import { v4 as uuidv4 } from "uuid";
 export default function Page() {
   // Replace with your actual data
   const [load, setLoad] = useState(true);
@@ -29,7 +30,13 @@ export default function Page() {
         });
     }
   }, [searchParams]);
-  if (load) return <div><Spinner></Spinner></div>;
+  if (load) {
+    return (
+      <div>
+        <Spinner></Spinner>
+      </div>
+    );
+  }
   if (error) return <div>Error</div>;
   function onClickDelete(id: number) {
     const del = api
@@ -53,6 +60,40 @@ export default function Page() {
       });
     console.log(del);
   }
+   function download(type: string) {
+    console.log(type);
+    const apiUrl = `mundal/${data.mundal.id}?download=true&type=${type}`;
+    api
+      .get(apiUrl, { responseType: "blob" })
+      .then((response) => {
+        const disposition = response.headers["content-disposition"];
+        let filename = `bjp__mandal__${uuidv4()}`;
+
+        if (disposition && disposition.indexOf("attachment") !== -1) {
+          const matches = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/.exec(
+            disposition,
+          );
+          if (matches != null && matches[1]) {
+            filename = matches[1].replace(/['"]/g, "");
+          }
+        }
+
+        const blob = new Blob([response.data], {
+          type: response.headers["content-type"],
+        });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+ 
   return (
     <>
       <div className="w-[100vw]  z-10">
@@ -67,7 +108,20 @@ export default function Page() {
           <div className="flex justify-center">
             <h1 className="text-2xl font-extrabold mt-10">Mundal Name</h1>
           </div>
-
+          <div className="flex justify-center">
+            <button
+              onClick={() => download("pdf")}
+              className="px-4 py-2 border-2 mb-5 mx-2 rounded-lg border-gray-400 text-sm"
+            >
+              PDF
+            </button>
+            <button
+              onClick={() => download("Excel")}
+              className="px-4 py-2 border-2 mb-5 mx-2 rounded-lg border-gray-400 text-sm"
+            >
+              Excel
+            </button>
+          </div>
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -111,7 +165,7 @@ export default function Page() {
                         href={{
                           pathname: "../mundalchangerole/",
                           query: {
-                            data:JSON.stringify(info),
+                            data: JSON.stringify(info),
                           },
                         }}
                         className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
