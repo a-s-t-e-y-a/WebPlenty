@@ -36,7 +36,7 @@ export default function Page() {
   }, []);
   function onClickDelete(id: number) {
     const del = api
-      .delete(`blog/${id}`)
+      .delete(`gallery/${id}`)
       .then((response) => {
         toast(response.data.message, {
           icon: "👏",
