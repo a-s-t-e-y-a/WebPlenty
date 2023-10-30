@@ -4,6 +4,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Navbar } from "../components/navbar";
 import toast from "react-hot-toast";
 import api from "../pages/api";
+import { NavbarLogout } from "../components/navbarlogout";
+import { Sidebar } from "../components/sidebar";
 
 interface IFormInput {
   title: string;
@@ -66,8 +68,11 @@ export default function Page() {
 
   return (
     <>
-      <Navbar></Navbar>
-      <h1 className="text-center font-bold text-2xl">Blog</h1>
+      <NavbarLogout></NavbarLogout>
+      <div className="flex">
+        <div><Sidebar></Sidebar></div>
+        <div>
+        <h1 className="text-center font-bold text-2xl">Blog</h1>
       <hr></hr>
       <form className="text-center" onSubmit={handleSubmit(onSubmit)}>
         <div className="text-center">
@@ -75,7 +80,7 @@ export default function Page() {
             <input
               type="file"
               multiple
-              className="cursor-pointer relative block opacity-0 w-full h-full p-20 z-50"
+              className="cursor-pointer relative block opacity-0 w-full h-full p-20 z-50 rounded-md"
               {...register("image")}
               onChange={handleImageChange}
             />
@@ -94,13 +99,13 @@ export default function Page() {
           <img
             src={imagePreview}
             alt="Image Preview"
-            className="max-h-40 mx-auto mt-4"
+            className="max-h-40 mx-auto mt-4 rounded-md"
           />
         )}
         <div>
           <input
             type="text"
-            className="h-[10vh] w-[80vw] my-10 p-5 border-2 border-black"
+            className="h-[10vh] w-[80vw] my-10 p-5 border-2 border-black rounded-md focus:border-orange-600 focus:outline-none" 
             placeholder="heading"
             {...register("title", { required: "Title is required" })}
           />
@@ -109,7 +114,7 @@ export default function Page() {
           <textarea
             placeholder="main content"
             {...register("content", { required: "Content is required" })}
-            className="h-[50vh] w-[80vw] my-3 p-5 border-2 border-black"
+            className="h-[50vh] w-[80vw] my-3 p-5 border-2 border-black rounded-md focus:border-orange-600 focus:outline-none"
           />
         </div>
         <input
@@ -118,6 +123,9 @@ export default function Page() {
           value="submit"
         />
       </form>
+        </div>
+      </div>
+      
     </>
   );
 }
