@@ -8,7 +8,10 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import api from "../pages/api";
 import Spinner from "../components/spinner";
+
 import { v4 as uuidv4 } from "uuid";
+import Oops from "../components/error";
+
 export default function Page() {
   // Replace with your actual data
   const [load, setLoad] = useState(true);
@@ -30,6 +33,7 @@ export default function Page() {
         });
     }
   }, [searchParams]);
+
   if (load) {
     return (
       <div>
@@ -38,6 +42,9 @@ export default function Page() {
     );
   }
   if (error) return <div>Error</div>;
+  if (load) return <div><Spinner></Spinner></div>;
+  if (error) return <div><Oops></Oops></div>;
+
   function onClickDelete(id: number) {
     const del = api
       .delete(`karykarta/${id}`)
