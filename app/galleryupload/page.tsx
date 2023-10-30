@@ -4,16 +4,19 @@ import { useState } from "react"; // Import useState from React
 
 export default function Page() {
   const { register, handleSubmit } = useForm();
-  const [selectedImage, setSelectedImage] = useState(null); // State for selected image
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedImage = event.target.files;
+
+    if (selectedImage && selectedImage.length > 0) {
       const reader = new FileReader();
-      reader.onload = (e) => {
-        setSelectedImage(e.target.result);
+      reader.onload = (e: any) => {
+        setImagePreview(e.target.result as string);
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(selectedImage[0]);
+    } else {
+      setImagePreview(null);
     }
   };
 
@@ -27,14 +30,12 @@ export default function Page() {
       <div className="flex justify-center w-full mx-auto sm:max-w-lg">
         <div className="flex flex-col items-center justify-center w-full h-auto my-20 bg-white sm:w-3/4 sm:rounded-lg sm:shadow-xl">
           <div className="mt-10 mb-10 text-center">
-            {selectedImage && (
-              <div className="mt-4">
-                <img
-                  src={selectedImage}
-                  alt="Selected"
-                  className="w-full h-full rounded-lg"
-                />
-              </div>
+            {imagePreview && (
+              <img
+                src={imagePreview}
+                alt="Image Preview"
+                className="max-h-40 mx-auto mt-4 rounded-md"
+              />
             )}
 
             <h2 className="text-2xl font-semibold mb-2">Upload your files</h2>
@@ -49,9 +50,9 @@ export default function Page() {
             <input
               type="file"
               multiple
-              {...register("file")}
-              className="hidden"
-              onChange={handleFileChange}
+              className="cursor-pointer relative block opacity-0 w-full h-full rounded-md"
+              {...register("image")}
+              onChange={handleImageChange}
             />
             <label
               htmlFor="file-upload"
