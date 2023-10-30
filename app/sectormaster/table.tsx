@@ -3,8 +3,11 @@ import { Pencil, Trash2 } from "lucide-react";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import { api } from "../pages/api";
+import { Controller, useForm } from "react-hook-form";
 
-export function Table({ data }: any) {
+export function Table({ data }: any, {url} : any) {
+  console.log(url)
+  const { handleSubmit, control } = useForm();
   console.log(data);
   function del(id: number) {
     api
@@ -24,19 +27,13 @@ export function Table({ data }: any) {
         }, 1000);
       })
       .catch((error) => {
-        console.log("dd");
+        console.log(error);
       });
   }
-  return (
+    return (
     <>
       <div>
-         <button className="px-4 py-2 border-2 mb-5 mx-2 rounded-lg border-gray-400">
-          PDF
-        </button>
-        <button className="px-4 py-2 border-2 mb-5 mx-2 rounded-lg border-gray-400">
-          Excel
-        </button> 
-        <button className="px-4 py-2 border-2 mb-5 mx-2 rounded-lg border-gray-400">
+               <button className="px-4 py-2 border-2 mb-5 mx-2 rounded-lg border-gray-400">
           <Link
             className="w-full h-full text-black transition-colors duration-300 hover:bg-gray-100 hover:text-gray-700"
             href="../sectormasterform"
@@ -130,7 +127,7 @@ export function Table({ data }: any) {
                     href={{
                       pathname: "../sectormasterformedit",
                       query: {
-                        data:JSON.stringify(info)
+                        data: JSON.stringify(info),
                       },
                     }}
                     className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
