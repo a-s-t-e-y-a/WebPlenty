@@ -48,7 +48,7 @@ export default function Page() {
           >
             <input
               type="file"
-              id="file-upload"
+              multiple
               {...register("file")}
               className="hidden"
               onChange={handleFileChange}
