@@ -57,7 +57,7 @@ export default function Page() {
   return (
     <div className="h-screen font-sans text-gray-900 bg-gray-300 border-box">
       <div className="flex justify-center w-full mx-auto sm:max-w-lg">
-        <div className="flex flex-col items-center justify-center w-full h-auto my-20 bg-white sm:w-3/4 sm:rounded-lg sm:shadow-xl">
+        <div className="flex flex-col items-center justify-center w-full h-[600px] my-20 bg-white sm:w-3/4 sm:rounded-lg sm:shadow-xl">
           <div className="mt-10 mb-10 text-center">
             {imagePreview && (
               <img
@@ -74,7 +74,7 @@ export default function Page() {
           </div>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="relative w-4/5 h-32 max-w-xs mb-10 bg-white bg-gray-100 rounded-lg shadow-inner flex flex-col items-center justify-center"
+            className="relative w-4/5 h-50 max-w-xs mb-10 bg-white bg-gray-100 rounded-lg shadow-inner flex flex-col items-center justify-center"
           >
             <input
               type="file"
@@ -104,7 +104,7 @@ export default function Page() {
             </div>
             <button
               type="submit"
-              className="bg-indigo-600 hover-bg-indigo-700 text-white font-bold py-2 px-4 rounded absolute bottom-[-40px]"
+              className="bg-indigo-600 hover-bg-indigo-700 text-white font-bold py-2 px-4 rounded absolute bottom-[-60px]"
             >
               Submit
             </button>
