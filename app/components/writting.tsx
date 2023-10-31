@@ -5,6 +5,7 @@ import api from "../pages/api";
 import image7 from "../../images/7.jpg";
 import Link from "next/link";
 import Oops from "./error";
+import Spinner from "./spinner";
 
 export function Writting() {
   const [data, setData] = useState({});
@@ -28,7 +29,7 @@ export function Writting() {
 
   console.log(data);
   if (error) return <div><Oops></Oops></div>;
-  if (loading) return <div>loading....</div>;
+  if (loading) return <div><Spinner/></div>;
 
   return (
     <>
