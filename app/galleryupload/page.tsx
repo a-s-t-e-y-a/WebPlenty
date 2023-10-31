@@ -29,29 +29,29 @@ export default function Page() {
     if (data.image) {
       formData.append("image", data.image[0]);
     }
-    // return api
-    //   .post("/gallery", formData, {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data",
-    //     },
-    //   })
-    //   .then(function (response) {
-    //     toast.success(response.data.message, {
-    //       icon: "👏",
-    //       style: {
-    //         borderRadius: "10px",
-    //         background: "#333",
-    //         color: "#fff",
-    //       },
-    //     });
-    //     setTimeout(() => {
-    //       window.location.reload();
-    //     }, 1000);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //     toast.error(error.response.data.message);
-    //   });
+    return api
+      .post("/gallery", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then(function (response) {
+        toast.success(response.data.message, {
+          icon: "👏",
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      })
+      .catch(function (error) {
+        console.log(error);
+        toast.error(error.response.data.message);
+      });
   };
 
   return (
