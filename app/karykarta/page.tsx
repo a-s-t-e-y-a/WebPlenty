@@ -144,7 +144,7 @@ const Page = () => {
                   render={({ field }) => (
                     <select
                       {...field}
-                      className="w-auto mx-5 my-2 bg-black text-white p-2 mb-4 border rounded-lg"
+                      className="w-auto mx-5 my-2 bg-orange-600 text-white p-2 mb-4 border rounded-lg"
                     >
                       <option value="None">Religion select</option>
                       <option value="hindu">Hindu</option>
@@ -164,7 +164,7 @@ const Page = () => {
                   render={({ field }) => (
                     <select
                       {...field}
-                      className="w-auto mx-5 bg-black text-white p-2 mb-4 border rounded-lg"
+                      className="w-auto mx-5 bg-orange-600 text-white p-2 mb-4 border rounded-lg"
                     >
                       <option value="None">Gender Select</option>
                       <option value="Male">Male</option>
@@ -181,7 +181,7 @@ const Page = () => {
                     render={({ field }) => (
                       <select
                         {...field}
-                        className="w-auto mx-5 bg-black text-white p-2 mb-4 border rounded-lg"
+                        className="w-auto mx-5 bg-orange-600 text-white p-2 mb-4 border rounded-lg"
                       >
                         <option value="None">Choose Party</option>
                         {!isLoading ? (
@@ -208,7 +208,7 @@ const Page = () => {
                   render={({ field }) => (
                     <select
                       {...field}
-                      className="w-auto mx-5 bg-black text-white p-2 mb-4 border rounded-lg"
+                      className="w-auto mx-5 bg-orange-600 text-white p-2 mb-4 border rounded-lg"
                     >
                       <option value="None">Mundal Select</option>
                       {data.data.info.map((info: any) => (
@@ -226,7 +226,7 @@ const Page = () => {
                   render={({ field }) => (
                     <select
                       {...field}
-                      className="w-auto mx-5 my-2 bg-black text-white p-2 mb-4 border rounded-lg"
+                      className="w-auto mx-5 my-2 bg-orange-600 text-white p-2 mb-4 border rounded-lg"
                     >
                       <option value="None">Select role</option>
                       <option value="karyakarta">karyakarta</option>
@@ -240,7 +240,7 @@ const Page = () => {
                 />
                 <button
                   type="submit"
-                  className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"
+                  className="bg-orange-600 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
                 >
                   Submit
                 </button>

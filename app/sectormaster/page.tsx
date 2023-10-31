@@ -141,7 +141,7 @@ function Page() {
                   render={({ field }) => (
                     <select
                       {...field}
-                      className="w-auto mx-5  bg-black text-white p-2 mb-4 border rounded-lg"
+                      className="w-auto mx-5  bg-orange-600 text-white p-2 mb-4 border rounded-lg"
                     >
                       <option value="None">Select mundal</option>
                       {mundal &&
