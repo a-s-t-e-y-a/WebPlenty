@@ -253,7 +253,7 @@ export function Table() {
                     {index + 1}
                   </th>
                   <td className="px-6 py-4">{info.name}</td>
-                  <td className="px-6 py-4">{info.sector.name}</td>
+                  <td className="px-6 py-4">{info.sector ? info.sector.name : 'N/A'}</td>
                   <td className="px-6 py-4">
                     <Link
                       href={{
