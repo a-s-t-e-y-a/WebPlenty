@@ -83,14 +83,8 @@ const Page = () => {
     return <div>authenticating</div>;
   }
 
-  if (error)
-    return (
-      <Oops></Oops>
-    );
-  if (isLoading)
-    return (
-      <Spinner></Spinner>
-    );
+  if (error) return <Oops></Oops>;
+  if (isLoading) return <Spinner></Spinner>;
   console.log(data.data);
   return (
     <>
@@ -104,7 +98,9 @@ const Page = () => {
         <div className="w-[80vw] relative top-10 min-[1440px]:left-64">
           {loading ? (
             <div className="text-center">
-              <p><Spinner></Spinner></p>
+              <p>
+                <Spinner></Spinner>
+              </p>
             </div>
           ) : infoError ? (
             <div
@@ -146,14 +142,17 @@ const Page = () => {
                       {...field}
                       className="w-auto mx-5 my-2 bg-orange-600 text-white p-2 mb-4 border rounded-lg"
                     >
-                      <option value="None">Religion select</option>
-                      <option value="hindu">Hindu</option>
-                      <option value="muslim">Muslim</option>
-                      <option value="christian">Christian</option>
-                      <option value="sikh">Sikh</option>
-                      <option value="jain">Jain</option>
-                      <option value="jews">Jews</option>
-                      <option value="Other">Other</option>
+                      <option value="None">Category</option>
+                      <option value="General">General</option>
+                      <option value="Other Backward Class">
+                        Other Backward Class (O.B.C)
+                      </option>
+                      <option value="Scheduled Castes">
+                        Scheduled Castes (S.C)
+                      </option>
+                      <option value="Scheduled Tribes">
+                        Scheduled Tribes (S.T)
+                      </option>
                     </select>
                   )}
                 />

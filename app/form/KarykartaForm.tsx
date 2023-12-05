@@ -34,7 +34,7 @@ type FormValue = {
   role: string;
 };
 function getAuthToken() {
-  return localStorage.getItem('accessToken');
+  return localStorage.getItem("accessToken");
 }
 async function postKarykarta(data: KarykartaFormData) {
   return api
@@ -52,11 +52,11 @@ async function postKarykarta(data: KarykartaFormData) {
 const KarykartaForm: React.FC<KarykartaFormProps> = () => {
   const [info, setInfo] = useState(false);
   const fetcher = (url: string) =>
-  fetch(url, {
-    headers: {
-      authorization: `${getAuthToken()}`, // Include the token here
-    },
-  }).then((res) => res.json());
+    fetch(url, {
+      headers: {
+        authorization: `${getAuthToken()}`, // Include the token here
+      },
+    }).then((res) => res.json());
   const {
     register,
     handleSubmit,
@@ -89,11 +89,14 @@ const KarykartaForm: React.FC<KarykartaFormProps> = () => {
   }
   const { data, error, isLoading } = useSWR(`${baseURL}/mundal`, fetcher);
 
-  if (error) return <div><Oops></Oops></div>;
-  if (isLoading) {
+  if (error)
     return (
-      <Spinner></Spinner>
+      <div>
+        <Oops></Oops>
+      </div>
     );
+  if (isLoading) {
+    return <Spinner></Spinner>;
   }
   // console.log(data.data[0].name);
 
@@ -134,18 +137,17 @@ const KarykartaForm: React.FC<KarykartaFormProps> = () => {
         className="w-full p-2 mb-4 border rounded-md"
       />
 
-      <label className="block mb-2 font-bold text-gray-700">Religion:</label>
+      <label className="block mb-2 font-bold text-gray-700">Category:</label>
       <select
         {...register("religion", { required: true })}
         className="w-full p-2 mb-4 border rounded-md"
       >
-        <option value="hindu">Hindu</option>
-        <option value="muslim">Muslim</option>
-        <option value="christian">Christian</option>
-        <option value="christian">Skih</option>
-        <option value="christian">Jain</option>
-        <option value="christian">Jews</option>
-        <option value="other">Other</option>
+        <option value="General">General</option>
+        <option value="Other Backward Class">
+          Other Backward Class (O.B.C)
+        </option>
+        <option value="Scheduled Castes">Scheduled Castes (S.C)</option>
+        <option value="Scheduled Tribes">Scheduled Tribes (S.T)</option>
       </select>
       <label className="block mb-2 font-bold text-gray-700">Gender:</label>
       <select
@@ -167,27 +169,27 @@ const KarykartaForm: React.FC<KarykartaFormProps> = () => {
 
       <label className="block mb-2 font-bold text-gray-700">Mundal:</label>
       <select
-  {...register("mundalId", { required: true })}
-  className="w-full p-2 mb-4 border rounded-md"
->
-  {!isLoading ? (
-    data && data.data ? (
-      data.data.map((info: any) => (
-        <option value={info.id} key={info.id}>
-          {info.name}
-        </option>
-      ))
-    ) : (
-      <option value="" key="no-data">
-        No data available
-      </option>
-    )
-  ) : (
-    <option value="" key="loading">
-      Loading...
-    </option>
-  )}
-</select>
+        {...register("mundalId", { required: true })}
+        className="w-full p-2 mb-4 border rounded-md"
+      >
+        {!isLoading ? (
+          data && data.data ? (
+            data.data.map((info: any) => (
+              <option value={info.id} key={info.id}>
+                {info.name}
+              </option>
+            ))
+          ) : (
+            <option value="" key="no-data">
+              No data available
+            </option>
+          )
+        ) : (
+          <option value="" key="loading">
+            Loading...
+          </option>
+        )}
+      </select>
 
       <label className="block mb-2 font-bold text-gray-700">Role:</label>
       <div className="flex space-x-4">

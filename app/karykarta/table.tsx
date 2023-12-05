@@ -135,7 +135,7 @@ export function TableData({ data, url }: { data: any; url: string }) {
               <th className="px-6 py-3">Address</th>
               <th className="px-6 py-3">Mobile Number</th>
               <th className="px-6 py-3">Date of Birth</th>
-              <th className="px-6 py-3">Religion</th>
+              <th className="px-6 py-3">Category</th>
               <th className="px-6 py-3">Gender</th>
               <th className="px-6 py-3">Previous Party</th>
               <th className="px-6 py-3">Mundal ID</th>
