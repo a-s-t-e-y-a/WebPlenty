@@ -5,16 +5,16 @@ import { ChevronLeft } from "lucide-react";
 import { ChevronRight } from "lucide-react";
 // import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 // import { Carousel } from 'react-responsive-carousel';
-// import Heroimg from 'https://shivam-practics-bucket.s3.ap-south-1.amazonaws.com/h.png'
+// import Heroimg from 'https://webplenty.s3.ap-south-1.amazonaws.com/h.png'
 
 export function Hero() {
   const slides = [
     {
-      url: "https://shivam-practics-bucket.s3.ap-south-1.amazonaws.com/h.png",
+      url: "https://webplenty.s3.ap-south-1.amazonaws.com/h.png",
     },
     // {
     //   url:
-    //     "https://shivam-practics-bucket.s3.ap-south-1.amazonaws.com/ketaki-singh.jpg",
+    //     "https://webplenty.s3.ap-south-1.amazonaws.com/ketaki-singh.jpg",
     // },
   ];
   // const [currentIndex, setCurrentIndex] = useState(0);

@@ -8,7 +8,7 @@ const nextConfig = {
 module.exports ={
   nextConfig,
   images: {
-    domains: ['shivam-practics-bucket.s3.ap-south-1.amazonaws.com'],
+    domains: ['webplenty.s3.ap-south-1.amazonaws.com'],
   },
   typescript:{
     ignoreBuildErrors:true

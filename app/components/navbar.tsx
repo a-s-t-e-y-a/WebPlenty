@@ -45,7 +45,7 @@ export function Navbar() {
           <span>
             
               <Image
-                  src="https://shivam-practics-bucket.s3.ap-south-1.amazonaws.com/bjplogo.jpg"
+                  src="https://webplenty.s3.ap-south-1.amazonaws.com/bjplogo.jpg"
                   className=" w-full rounded-lg bg-gray-50 object-cover lg:aspect-auto lg:h-[50px] sm:h-[30px]"
                   alt="BJP"
                   width={80}

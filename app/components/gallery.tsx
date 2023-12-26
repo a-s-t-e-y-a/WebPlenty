@@ -55,26 +55,31 @@ export function Gallery() {
         Gallery
       </h1>
       <div className="mx-auto grid  max-w-7xl items-center space-y-4 px-2 py-10 md:grid-cols-2 md:gap-6 md:space-y-0 lg:grid-cols-4 w-full">
-        {apiData && apiData.map((pic, index) => (
-          <Image
-            key={index}
-            src={pic.name}
-            height={1200}
-            width={800}
-            className="aspect-square object-cover "
-            alt="Gallery"
-            onClick={() => toggleImageSize(index)}
-            style={{
-              cursor: "pointer",
-              transform: enlargedIndex === index ? "scale(1.3)" : "scale(1)",
-              transition: "transform 0.5s",
-              zIndex: enlargedIndex === index ? 1 : "auto",
-              position: enlargedIndex === index ? "absolute" : "relative",
-              left: enlargedIndex === index ? "20%" : "auto",
-              border: "4px solid #cfcecc",
-            }}
-          />
-        ))}
+      {apiData && apiData.map((pic, index) => (
+  <Image
+    key={index}
+    src={pic.name.startsWith("https://webplenty.s3.ap-south-1.amazonaws.com/")
+      ? pic.name
+      : pic.name.replace(
+          "https://shivam-practics-bucket.s3.ap-south-1.amazonaws.com/",
+          "https://webplenty.s3.ap-south-1.amazonaws.com/"
+        )}
+    height={1200}
+    width={800}
+    className="aspect-square object-cover"
+    alt="Gallery"
+    onClick={() => toggleImageSize(index)}
+    style={{
+      cursor: "pointer",
+      transform: enlargedIndex === index ? "scale(1.3)" : "scale(1)",
+      transition: "transform 0.5s",
+      zIndex: enlargedIndex === index ? 1 : "auto",
+      position: enlargedIndex === index ? "absolute" : "relative",
+      left: enlargedIndex === index ? "20%" : "auto",
+      border: "4px solid #cfcecc",
+    }}
+  />
+))}
       </div>
     </>
   );
