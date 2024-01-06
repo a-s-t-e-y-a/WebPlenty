@@ -130,7 +130,7 @@ function Page() {
                   Village Name
                 </label>
                 <Controller
-                  name="sectorId"
+                  name="villageId"
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
