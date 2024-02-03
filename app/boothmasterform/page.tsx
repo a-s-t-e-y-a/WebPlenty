@@ -9,7 +9,7 @@ import Spinner from "../components/spinner";
 import Oops from "../components/error";
 function Page() {
   const { handleSubmit, control, watch } = useForm();
-  const selectedSector = watch("sectorId");
+  const selectedSector = watch("villageId");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -130,7 +130,7 @@ function Page() {
                   Village Name
                 </label>
                 <Controller
-                  name="sectorId"
+                  name="villageId"
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
