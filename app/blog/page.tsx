@@ -55,11 +55,11 @@ function Page() {
         <div className="mx-auto sm:w-full md:max-w-[90%] lg:max-w-[80%]">
           <div className="rounded-lg bg-gray-200 p-4">
             <Image
-              src={info?.image.startsWith("https://webplenty.s3.ap-south-1.amazonaws.com/")
+              src={info?.image.startsWith("https://webplentybackend.s3.ap-south-1.amazonaws.com/")
                 ? info?.image
                 : info?.image.replace(
                     "https://shivam-practics-bucket.s3.ap-south-1.amazonaws.com/",
-                    "https://webplenty.s3.ap-south-1.amazonaws.com/"
+                    "https://webplentybackend.s3.ap-south-1.amazonaws.com/"
                   )}
               alt="Go Back"
               width={1200}

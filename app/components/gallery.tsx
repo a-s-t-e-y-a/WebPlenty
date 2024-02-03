@@ -58,11 +58,11 @@ export function Gallery() {
       {apiData && apiData.map((pic, index) => (
   <Image
     key={index}
-    src={pic.name.startsWith("https://webplenty.s3.ap-south-1.amazonaws.com/")
+    src={pic.name.startsWith("https://webplentybackend.s3.ap-south-1.amazonaws.com/")
       ? pic.name
       : pic.name.replace(
           "https://shivam-practics-bucket.s3.ap-south-1.amazonaws.com/",
-          "https://webplenty.s3.ap-south-1.amazonaws.com/"
+          "https://webplentybackend.s3.ap-south-1.amazonaws.com/"
         )}
     height={1200}
     width={800}

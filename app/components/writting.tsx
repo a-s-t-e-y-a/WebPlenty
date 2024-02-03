@@ -37,11 +37,11 @@ export function Writting() {
           <div key={index} className="w-[300px] h-[300px] overflow-hidden">
             <div className="relative aspect-[16/9] h-full  rounded-md md:aspect-auto ">
               <Image
-                src={info.image.startsWith("https://webplenty.s3.ap-south-1.amazonaws.com/")
+                src={info.image.startsWith("https://webplentybackend.s3.ap-south-1.amazonaws.com/")
                   ? info.image
                   : info.image.replace(
                       "https://shivam-practics-bucket.s3.ap-south-1.amazonaws.com/",
-                      "https://webplenty.s3.ap-south-1.amazonaws.com/"
+                      "https://webplentybackend.s3.ap-south-1.amazonaws.com/"
                     )}
                     width={300}
                     height={100}
