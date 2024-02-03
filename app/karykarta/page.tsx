@@ -92,10 +92,10 @@ const Page = () => {
         <NavbarLogout />
       </div>
       <div className="flex">
-        <div className="min-[1440px]:fixed">
+        <div className="">
           <Sidebar />
         </div>
-        <div className="w-[80vw] relative top-10 min-[1440px]:left-64">
+        <div className="w-[80vw] relative top-10">
           {loading ? (
             <div className="text-center">
               <p>
@@ -122,13 +122,12 @@ const Page = () => {
               </div>
             </div>
           ) : (
-            <>
+            <div className=" w-[100vw] lg:w-auto">
               <div className="flex justify-center">
                 <h1 className="text-2xl font-extrabold mt-10">
                   कार्यकर्ता विवरण
                 </h1>
               </div>
-              {}
               <form
                 className="w-full text-center mt-12"
                 onSubmit={handleSubmit(onSubmit)}
@@ -244,7 +243,7 @@ const Page = () => {
                   Submit
                 </button>
               </form>
-              <div className="w-full">
+              <div className="w-[90vw] h-[90vh] overflow-x-scroll">
                 <div className="">
                   {/* <h1 className="text-2xl font-extrabold mt-10">
                   Mundal Master
@@ -252,7 +251,7 @@ const Page = () => {
                   <TableData data={madal} url={url} />
                 </div>
               </div>
-            </>
+            </div>
           )}
         </div>
       </div>

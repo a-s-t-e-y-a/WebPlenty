@@ -32,10 +32,10 @@ export function Writting() {
 
   return (
     <>
-      <div className="mx-auto w-full max-w-7xl items-center space-y-4 px-2 py-10 md:space-y-0 flex flex-wrap gap-5">
+      <div className="mx-auto w-full max-w-7xl items-center space-y-4 px-2 py-10 md:space-y-0 flex flex-wrap gap-5 justify-center">
         {data.map((info, index) => (
-          <div key={index} className="relative aspect-[1/1] w-auto rounded-md md:h-[400px]">
-            <div className="relative aspect-[16/9] w-auto rounded-md md:aspect-auto md:h-[400px]">
+          <div key={index} className="w-[300px] h-[300px] overflow-hidden">
+            <div className="relative aspect-[16/9] h-full  rounded-md md:aspect-auto ">
               <Image
                 src={info.image.startsWith("https://webplenty.s3.ap-south-1.amazonaws.com/")
                   ? info.image
@@ -43,10 +43,12 @@ export function Writting() {
                       "https://shivam-practics-bucket.s3.ap-south-1.amazonaws.com/",
                       "https://webplenty.s3.ap-south-1.amazonaws.com/"
                     )}
-                width={1280}
-                height={960}
+                    width={300}
+                    height={100}
+
+
                 alt="Kanya Sumangla scheme"
-                className="z-0 h-full w-full rounded-md object-cover"
+                className=" object-cover object-center"
               />
               <div className="absolute inset-0 rounded-md bg-gradient-to-t from-gray-900 to-transparent"></div>
               <div className="absolute bottom-4 left-4 text-left">
