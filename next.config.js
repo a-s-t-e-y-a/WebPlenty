@@ -9,6 +9,7 @@ module.exports ={
   nextConfig,
   images: {
     domains: ['webplentybackend.s3.ap-south-1.amazonaws.com'],
+    unoptimized: false
   },
   typescript:{
     ignoreBuildErrors:true
