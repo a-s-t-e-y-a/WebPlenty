@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // export const baseURL = 'https://api.ketakeesingh362bansdih.in/api/';
-export const baseURL='https://bjp.onrender.com/api/'  
+export const baseURL='https://api.akkukachasma.com/proxy/api/'  
 // export const baseURL = 'http://localhost:5555/api/'
 export const api = axios.create({
   baseURL,
